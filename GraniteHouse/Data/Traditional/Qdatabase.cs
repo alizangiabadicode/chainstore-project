@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChainStore.Models;
 using Microsoft.AspNetCore.Razor.Language.CodeGeneration;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace ChainStore.Data.Traditional
 {
@@ -103,6 +104,95 @@ namespace ChainStore.Data.Traditional
             connection.Close();
         }
 
+        public int inappointment(Appointments input)
+        {
+            SqlCommand cmd = new SqlCommand("inappointment", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter pmt2 = new SqlParameter("@AppointmentDate", SqlDbType.DateTime);
+            pmt2.Value = Convert.ToDateTime(input.AppointmentDate);
+            SqlParameter pmt3 = new SqlParameter("@CustomerName", SqlDbType.NVarChar);
+            pmt3.Value = input.CustomerName;
+            SqlParameter pmt4 = new SqlParameter("@CustomerNumber", SqlDbType.NVarChar);
+            pmt4.Value = input.CustomerNumber;
+            SqlParameter pmt5 = new SqlParameter("@CustomerEmail", SqlDbType.NVarChar);
+            pmt5.Value = input.CustomerEmail;
+            SqlParameter pmt6 = new SqlParameter("@IsConfirmed", SqlDbType.Bit);
+            pmt6.Value = input.IsConfirmed ? 1 : 0;
+            cmd.Parameters.Add(pmt2); cmd.Parameters.Add(pmt3); cmd.Parameters.Add(pmt4); cmd.Parameters.Add(pmt5); cmd.Parameters.Add(pmt6);
+            int i = 0;
+            connection.Open();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                i = Convert.ToInt32(reader[0]);
+            }
+
+            connection.Close();
+            return i;
+        }
+
+        public void rmpsa(int ai, int pi)
+        {
+            SqlCommand cmd = new SqlCommand("rmpsa", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter pmt = new SqlParameter("@pi", SqlDbType.Int);
+            pmt.Value = pi;
+            SqlParameter pmt2 = new SqlParameter("@ai", SqlDbType.Int);
+            pmt2.Value = ai;
+            cmd.Parameters.Add(pmt);
+            cmd.Parameters.Add(pmt2);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public List<ProductsSelectedForAppointment> retpsaall()
+        {
+            List<ProductsSelectedForAppointment> ls = new List<ProductsSelectedForAppointment>();
+            SqlCommand cmd = new SqlCommand("retpsaall", connection);
+            connection.Open();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ls.Add(new ProductsSelectedForAppointment()
+                {
+                    Id = Convert.ToInt32(reader[0]),
+                    AppointmentId = Convert.ToInt32(reader[1]),
+                    ProductId = Convert.ToInt32(reader[2]),
+                    Count = Convert.ToInt32(reader[3])
+                });
+            }
+            connection.Close();
+            return ls;
+        }
+
+        public ProductsSelectedForAppointment retpsa_ai_pi(int ai, int pi)
+        {
+            SqlCommand cmd = new SqlCommand("retpsa_ai_pi", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter pmt = new SqlParameter("@pi", SqlDbType.Int);
+            pmt.Value = pi;
+            SqlParameter pmt2 = new SqlParameter("@ai", SqlDbType.Int);
+            pmt2.Value = ai;
+            cmd.Parameters.Add(pmt);
+            cmd.Parameters.Add(pmt2);
+            ProductsSelectedForAppointment item = null;
+            connection.Open();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                item = new ProductsSelectedForAppointment()
+                {
+                    Id = Convert.ToInt32(reader[0]),
+                    AppointmentId = ai,
+                    ProductId = pi,
+                    Count = Convert.ToInt32(reader[3])
+                };
+            }
+            connection.Close();
+            return item;
+        }
+
         public List<Appointments> SucAppointments()
         {
             List<Appointments> ls = new List<Appointments>();
@@ -152,6 +242,24 @@ namespace ChainStore.Data.Traditional
             return ls;
         }
 
+        public void inpsa(ProductsSelectedForAppointment input)
+        {
+            SqlCommand cmd = new SqlCommand("inpsa", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter pmt1 = new SqlParameter("@AppointmentId", SqlDbType.Int);
+            pmt1.Value = input.AppointmentId;
+            SqlParameter pmt2 = new SqlParameter("@ProductId", SqlDbType.Int);
+            pmt2.Value = input.ProductId;
+            SqlParameter pmt3 = new SqlParameter("@Count", SqlDbType.Int);
+            pmt3.Value = input.Count;
+            cmd.Parameters.Add(pmt1);
+            cmd.Parameters.Add(pmt2);
+            cmd.Parameters.Add(pmt3);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public void include_pt_st(List<Products> ls)
         {
             foreach (Products i in ls)
@@ -159,6 +267,12 @@ namespace ChainStore.Data.Traditional
                 i.SpecialTags = retSpecialTag(i.SpecialTagId);
                 i.ProductTypes = retProductType(i.ProductTypeId);
             }
+        }
+
+        public void include_pi_ai(ProductsSelectedForAppointment input)
+        {
+            input.Products = retProduct(input.ProductId);
+            input.Appointments = retAppointment(input.AppointmentId);
         }
 
         public List<Products> p_join_psa(int id)

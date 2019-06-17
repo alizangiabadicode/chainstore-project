@@ -31,7 +31,7 @@ namespace ChainStore.Areas.Customer.Controllers
             {
                 Products = new List<Products>()
             };
-            orm = _db.WitchOrm.Find().i;
+            orm = _db.WitchOrm.First().i;
             qdb = new Qdatabase();
         }
         public IActionResult Index()
@@ -47,12 +47,13 @@ namespace ChainStore.Areas.Customer.Controllers
 
                 if (orm == 1)
                 {
+                    List<Products> ls = new List<Products>();
                     foreach (int i in lst.Keys)
                     {
-                        Products p = _db.Products.Include(e => e.ProductTypes).Include(e => e.SpecialTags)
-                            .FirstOrDefault(e => e.Id == i);
+                        Products p = qdb.retProduct(i);ls.Add(p);qdb.include_pt_st(ls);
                         p.Price = lst[i] * p.Price;
                         ShoppingCardvm.Products.Add(p);
+                        ls.Clear();
                     }
                 }
                 else
@@ -94,25 +95,48 @@ namespace ChainStore.Areas.Customer.Controllers
                 .AddHours(ShoppingCardvm.Appointments.AppointmentTime.Hour)
                 .AddMinutes(ShoppingCardvm.Appointments.AppointmentTime.Minute);
 
-            _db.Appointments.Add(ShoppingCardvm.Appointments);
+            if (orm == 1)
+            {
+                ShoppingCardvm.Appointments.Id = qdb.inappointment(ShoppingCardvm.Appointments);
+            }
+            else
+            {
+                _db.Appointments.Add(ShoppingCardvm.Appointments);
+                await _db.SaveChangesAsync();
+            }
 
-            await _db.SaveChangesAsync();
 
             int idAppointment = ShoppingCardvm.Appointments.Id;
 
-
-            foreach (var i in items.Keys)
+            if (orm == 1)
             {
-                ProductsSelectedForAppointment psa = new ProductsSelectedForAppointment()
+                foreach (var i in items.Keys)
                 {
-                    AppointmentId = idAppointment,
-                    ProductId = i,
-                    Count = items[i]
-                };
-                _db.ProductsSelectedForAppointments.Add(psa);
+                    ProductsSelectedForAppointment psa = new ProductsSelectedForAppointment()
+                    {
+                        AppointmentId = idAppointment,
+                        ProductId = i,
+                        Count = items[i]
+                    };
+                    //qdb.include_pi_ai(psa);
+                    qdb.inpsa(psa);
+                }
+            }
+            else
+            {
+                foreach (var i in items.Keys)
+                {
+                    ProductsSelectedForAppointment psa = new ProductsSelectedForAppointment()
+                    {
+                        AppointmentId = idAppointment,
+                        ProductId = i,
+                        Count = items[i]
+                    };
+                    _db.ProductsSelectedForAppointments.Add(psa);
+                }
+                await _db.SaveChangesAsync();
             }
 
-            await _db.SaveChangesAsync();
             //items = new Dictionary<int, int>();
             items[int.MaxValue] = idAppointment;
             HttpContext.Session.Set("ls", items);
@@ -161,9 +185,18 @@ namespace ChainStore.Areas.Customer.Controllers
             //        lst.Remove((int)id);
             //    }
             //}
-            var psd = await _db.ProductsSelectedForAppointments.FirstAsync(e => e.AppointmentId == appoinmentId && e.ProductId == id);
-            _db.ProductsSelectedForAppointments.Remove(psd);
-            await _db.SaveChangesAsync();
+            ProductsSelectedForAppointment psd = null;
+            if (orm == 1)
+            {
+                qdb.rmpsa(appoinmentId, (int)id);
+            }
+            else
+            {
+                psd = await _db.ProductsSelectedForAppointments.FirstAsync(e => e.AppointmentId == appoinmentId && e.ProductId == id);
+                _db.ProductsSelectedForAppointments.Remove(psd);
+                await _db.SaveChangesAsync();
+            }
+
             var count = _db.ProductsSelectedForAppointments.Count(e => e.AppointmentId == appoinmentId);
             if (count == 0)
             {
@@ -178,18 +211,53 @@ namespace ChainStore.Areas.Customer.Controllers
 
         public async Task<IActionResult> AppointmentConfirmation(int id)
         {
-            ShoppingCardvm.Appointments = await _db.Appointments.FirstOrDefaultAsync(e => e.Id == id);
+            List<ProductsSelectedForAppointment> lst = null;
+            if (orm == 1)
+            {
+                ShoppingCardvm.Appointments = qdb.retAppointment(id);
+                lst = qdb.retpsaall();
+            }
+            else
+            {
+                ShoppingCardvm.Appointments = await _db.Appointments.FirstOrDefaultAsync(e => e.Id == id);
+                lst = await _db.ProductsSelectedForAppointments.ToListAsync();
+            }
+
             Dictionary<int, int> ls = HttpContext.Session.Get<Dictionary<int, int>>("ls");
             if (ls[int.MaxValue] != ShoppingCardvm.Appointments.Id)
             {
                 return NotFound();
             }
-            List<ProductsSelectedForAppointment> lst = await _db.ProductsSelectedForAppointments.Where(e => e.AppointmentId == id).ToListAsync();
-            foreach (ProductsSelectedForAppointment psa in lst)
+
+            lst = lst.Where(e => e.AppointmentId == id).ToList();
+
+            if (orm == 1)
             {
-                ShoppingCardvm.Products.Add(_db.Products.Include(e => e.ProductTypes).Include(e => e.SpecialTags)
-                   .FirstOrDefault(e => e.Id == psa.ProductId));
+                
+                foreach (ProductsSelectedForAppointment psa in lst)
+                {
+                    Products p = qdb.retProduct(psa.ProductId);
+                    List<Products> products = new List<Products>();
+                    products.Add(p);
+                    qdb.include_pt_st(products);
+                    ShoppingCardvm.Products.Add(p);
+                }
+
             }
+            else
+            {
+                foreach (ProductsSelectedForAppointment psa in lst)
+                {
+                    ShoppingCardvm.Products.Add(_db.Products.Include(e => e.ProductTypes).Include(e => e.SpecialTags)
+                        .FirstOrDefault(e => e.Id == psa.ProductId));
+                }
+            }
+
+            //foreach (ProductsSelectedForAppointment psa in lst)
+            //{
+            //    ShoppingCardvm.Products.Add(_db.Products.Include(e => e.ProductTypes).Include(e => e.SpecialTags)
+            //       .FirstOrDefault(e => e.Id == psa.ProductId));
+            //}
 
             ls[int.MinValue] = 1;
             HttpContext.Session.Set("ls", ls);
