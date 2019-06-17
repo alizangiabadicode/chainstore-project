@@ -1,0 +1,210 @@
+﻿@using System.Linq
+@using ChainStore.Extension
+@using ChainStore.Models.ViewModel
+@using Microsoft.AspNetCore.Http
+@model ShoppingCardViewModel
+@{
+    ViewData["Title"] = "Shopping Card";
+}
+@inject IHttpContextAccessor HttpContextAccessor
+
+<h2 class="text-info">Shopping Card</h2>
+
+@if (Model.Products.Count == 0)
+{
+    <div>
+        There is no product in shopping card
+    </div>
+
+}
+else
+{
+
+
+<div class="container border border-secondary rounded" style="padding: 15px">
+    <div class="row">
+            <div class="col-md-8 col-12" style="border-right: 1px solid black">
+        <form method="post">
+            <input hidden asp-for="@Model.Products" />
+
+            @{ var temp = HttpContextAccessor.HttpContext.Session.Get<Dictionary<int, int>>("ls"); }
+
+                <table class="table table-striped" style="width: 100%">
+                    <tr class="table-info">
+                        <th style="text-align: center" width="20%"></th>
+                        <th style="text-align: center">
+                            <label asp-for="Products.FirstOrDefault().Name"></label>
+                        </th>
+                        <th style="text-align: center">
+                            <label asp-for="Products.FirstOrDefault().Price"></label>
+                        </th>
+                        <th style="text-align: center">
+                            <label asp-for="Products.FirstOrDefault().Count"></label>
+                        </th>
+                        <th style="text-align: center">
+                            <label asp-for="Products.FirstOrDefault().ProductTypes"></label>
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var i in Model.Products)
+                    {
+                        <tr style="padding: 50px">
+                            <td style="text-align: center">
+                                <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@i.Id">
+                                    <img src="@i.Image" style="margin: auto; width: 100%; display: block; border-radius: 5px; border: 1px solid gray" />
+                                </a>
+                            </td>
+                            <td style="text-align: center">
+                                @Html.DisplayFor(e => i.Name)
+                            </td>
+                            <td style="text-align: center">
+                                @i.Price
+                            </td>
+                            <td style="text-align: center">
+                                @if (temp.TryGetValue(i.Id, out int c))
+                                {
+                                    @c
+                                }
+                            </td>
+                            <td style="text-align: center">
+                                @i.ProductTypes.Name
+                            </td>
+                            <td style="text-align: center">
+                                <button class="btn btn-danger" asp-action="Remove" asp-route-id="@i.Id"><i class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+        </form>
+            </div>
+            <div class="col-4 text-center">
+        <form method="post">
+                <h6 class=" text-primary ">
+                    Fillout The Form
+                </h6>
+            <br/>
+                <div class="bodyG">
+                    <div class="container">
+                        <div class="group">
+                            <input asp-for="Appointments.CustomerName" class="inputG" type="text" required>
+                            <span class=""></span>
+                            <span class="bar"></span>
+                            <label class="labelG">Customer Name</label>
+                        </div>
+                        @*<label asp-for="Appointments.CustomerName"></label> :*@
+                    </div>
+                </div>
+                @*<div class="col-12">
+                        <input class="form-control" asp-for="Appointments.CustomerName" />
+                    </div>*@
+                <div class="bodyG">
+                    <div class="container">
+                        <div class="group">
+                            <input asp-for="Appointments.CustomerNumber" class="inputG" type="tel" required>
+                            <span class=""></span>
+                            <span class="bar"></span>
+                            <label class="labelG">Customer Phone Number</label>
+                        </div>
+                        @*<label asp-for="Appointments.CustomerNumber"></label> :*@
+                    </div>
+                </div>
+
+                @*<label asp-for="Appointments.CustomerNumber"></label> :*@
+                @*<div class="col-12">
+                        <input class="form-control" asp-for="Appointments.CustomerNumber" />
+                    </div>*@
+                @*<div class="col-12">
+
+                        <label asp-for="Appointments.CustomerEmail"></label> :
+                    </div>*@
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bodyG">
+                            <div class="container">
+                                <div class="group">
+                                    <input asp-for="Appointments.CustomerEmail" class="inputG" type="email" required>
+                                    <span class=""></span>
+                                    <span class="bar"></span>
+                                    <label class="labelG">Customer Email</label>
+                                </div>
+                                @*<label asp-for="Appointments.CustomerEmail"></label> :*@
+                            </div>
+                        </div>
+
+                        @*<input class="form-control" asp-for="Appointments.CustomerEmail" />*@
+                    </div>
+                </div>
+                @*<div class="col-12">
+                        <label asp-for="Appointments.AppointmentDate"></label> :
+                    </div>*@
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bodyG">
+                            <div class="container">
+                                <div class="group">
+                                    <input asp-for="Appointments.AppointmentDate" id="datepicker" class="inputG" type="text" required>
+                                    <span class=""></span>
+                                    <span class="bar"></span>
+                                    <label class="labelG">Appointment Date</label>
+                                </div>
+                            </div>
+                        </div>
+                        @*<label asp-for="Appointments.AppointmentDate"></label>*@
+
+                        @*<input type="text" asp-for="Appointments.AppointmentDate" class="form-control" id="datepicker" value="" />*@
+                    </div>
+                </div>
+                @*<div class="col-12">
+                        <label asp-for="Appointments.AppointmentTime"></label> :
+                    </div>*@
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bodyG">
+                            <div class="container">
+                                <div class="group">
+                                    <input asp-for="Appointments.AppointmentTime" class="inputG timepicker" type="text" required>
+                                    <span class=""></span>
+                                    <span class="bar"></span>
+                                    <label class="labelG">Appointment Time</label>
+                                </div>
+                                @*<label asp-for="Appointments.AppointmentTime "class="timepicker"></label> :*@
+                            </div>
+                        </div>
+
+                        @*<input class="form-control timepicker" asp-for="Appointments.AppointmentTime" id="timepicker" type="text" value="" style="margin-bottom: 10px" />*@
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-success" asp-for="Appointments.AppointmentTime" id="btnPlaceHolder" type="submit">Schedule Appointment</button>
+                </div>
+
+        </form>
+            </div>
+    </div>
+</div>
+                }
+@section Scripts{
+    <script>
+
+
+        $('.timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 30,
+            minTime: '10',
+            maxTime: '06:00pm',
+            defaultTime: '11',
+            startTime: '08:00am',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+
+
+        $(function () {
+            $("#datepicker").datepicker({
+                minDate: +1,
+                maxDate: "+3M"
+            });
+        });
+    </script>
+}

@@ -1,0 +1,119 @@
+﻿@using System.Linq
+@model ChainStore.Models.ViewModel.AppointmentViewModel
+<form method="get">
+    <br />
+    <h2 class="text-info">
+        Appointment List
+    </h2>
+    <div class="container">
+        <div class="row" style="background-color: aliceblue;padding: 15px;">
+            <div class="col-lg-2 col-md-2 col-4">
+                Customer Name
+            </div>
+            <div class="col-lg-3 col-md-3 col-8">
+                @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-lg-2 col-md-2 col-12"></div>
+            <div class="col-lg-2 col-md-2 col-4">
+                Customer Email
+            </div>
+            <div class="col-lg-3 col-md-3 col-8">
+                @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="row" style="padding: 15px">
+            <div class="col-lg-2 col-md-2 col-4">
+                Phone Number
+            </div>
+            <div class="col-lg-3 col-md-3 col-8">
+                @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-lg-2 col-md-2 col-12"></div>
+            <div class="col-lg-2 col-md-2 col-4">
+                Appointment Date
+            </div>
+            <div class="col-lg-3 col-md-3 col-8">
+                @Html.Editor("searchDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+            </div>
+        </div>
+        <div class="row" style="padding: 15px">
+            <div class="col-lg-2 col-md-2 col-4">
+            </div>
+            <div class="col-lg-3 col-md-3 col-8">
+            </div>
+            <div class="col-lg-2 col-md-2 col-12"></div>
+            <div class="col-lg-2 col-md-2 col-4">
+            </div>
+            <div class="col-lg-3 col-md-3 col-8">
+                <button type="submit" class="btn btn-primary form-control">
+                    <i class="fas fa-search"></i>&nbsp; Search
+                </button>
+            </div>
+        </div>
+
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <table class="table table-striped border" style="padding: 15px">
+                    <tr class="table-info">
+
+                        <th>@Html.DisplayNameFor(e => e.Appointments.FirstOrDefault().AppointmentDate)</th>
+                        <th>@Html.DisplayNameFor(e => e.Appointments.FirstOrDefault().CustomerName)</th>
+                        <th>@Html.DisplayNameFor(e => e.Appointments.FirstOrDefault().CustomerEmail)</th>
+
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var i in Model.Appointments)
+                    {
+                        <tr>
+
+                            <td>@Html.DisplayFor(e => i.AppointmentDate)</td>
+                            <td>@Html.DisplayFor(e => i.CustomerName)</td>
+                            <td>@Html.DisplayFor(e => i.CustomerEmail)</td>
+
+                            <td>
+                                <partial name="_TableButtonPartial" model="@i.Id" />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</form>
+@section Scripts{
+    <script>
+
+
+        $(function () {
+            $("#datepicker").datepicker({
+                
+                maxDate: "+3M"
+            });
+        });
+
+        $(document).ready(function () {
+            var data = document.getElementById("datepicker").value;
+            var t = document.getElementById("timepicker").value;
+
+            if (data.indexOf("T") > 0) {
+                data = data.split("T");
+            } else {
+                data = data.split(" ");
+            }
+            var time = data[1];
+
+            var amPm = "";
+            if (data[2] != undefined) {
+                amPm = data[2];
+            }
+
+            //var amPm = data[2];
+            $("#datepicker").attr("value", data[0]);
+            $('#timepicker').attr("value", data[1].substr(0, 5) + " " + amPm);
+        });
+
+    </script>
+}

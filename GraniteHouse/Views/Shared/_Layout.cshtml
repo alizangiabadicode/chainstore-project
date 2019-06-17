@@ -1,0 +1,123 @@
+﻿@using ChainStore.Extension
+@using ChainStore.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor accessor
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ChainStore</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/buttonscss.css" />
+        <link rel="stylesheet" href="~/css/selectstylesheet.css" />
+        <link rel="stylesheet" href="~/css/inputGoogleMaterial.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/jquery-ui.css" />
+        <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </environment>
+
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/buttonscss.css" />
+        <link rel="stylesheet" href="~/css/selectstylesheet.css" />
+        <link rel="stylesheet" href="~/css/inputGoogleMaterial.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/jquery-ui.css" />
+        <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </environment>
+</head>
+<body>
+
+    <div style="overflow:auto">
+        <nav class="navbar container-fluid  navbar-expand-sm navbar-dark bg-secondary fixed-top">
+            <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">ChainStore</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    @if (User.IsInRole(SD.SuperAdminEndUser))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Administrator" asp-controller="ProductTypes" asp-action="Index">Product Types</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Administrator" asp-controller="SpecialTags" asp-action="Index">Special Tags</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Administrator" asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Administrator" asp-controller="AdminUsers" asp-action="Index">Admin User</a>
+                        </li>
+                    }
+                    @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="Administrator" asp-controller="Appointments" asp-action="Index">Appointments</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="Administrator" asp-controller="Appointments" asp-action="SuccessFullAppointments">Successfull Appointments</a>
+                        </li>
+
+                    }
+                    <li style="color: white">
+                        <a class="nav-link" asp-area="Customer" asp-controller="ShoppingCard" asp-action="Index">
+                            <i class="fas fa-cart-plus"></i>
+                            &nbsp;
+                            @{
+                                var context = accessor.HttpContext.Session.Get<Dictionary<int, int>>("ls");
+                            }
+                            @if (context != null)
+                            {
+                                var count = context.Count;
+                                if (context.ContainsKey(int.MaxValue))
+                                {
+                                    count -= 2;
+                                }
+                                @:(@(count))
+                            }
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </div>
+    @*<partial name="_CookieConsentPartial" />*@
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <environment include="Development">
+        <script src="~/js/selectjs.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <script src="~/js/selectjs.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

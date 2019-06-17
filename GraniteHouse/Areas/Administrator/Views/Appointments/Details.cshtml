@@ -1,0 +1,140 @@
+﻿@model ChainStore.Models.ViewModel.AppointmentDetailViewModel
+<br />
+<h2 class="text-info">Details</h2>
+
+<div class="p-4 border rounded row">
+    <div class="col-6">
+        <div class="row form-group">
+            <div class="col-4">
+                Customer Name :
+            </div>
+            <div class="col-8">
+                <input class="form-control" disabled="disabled" asp-for="Appointments.CustomerName" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4">
+                Customer Email :
+            </div>
+            <div class="col-8">
+                <input class="form-control" disabled="disabled" asp-for="Appointments.CustomerEmail" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4">
+                Customer Number :
+            </div>
+            <div class="col-8">
+                <input class="form-control" disabled="disabled" asp-for="Appointments.CustomerNumber" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4">
+                Appointment Date :
+            </div>
+            <div class="col-8">
+                <input class="form-control" disabled="disabled" id="datepicker" asp-for="Appointments.AppointmentDate" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4">
+                Appointment Time :
+            </div>
+            <div class="col-8">
+                <input class="form-control" disabled="disabled" id="timepicker" asp-for="Appointments.AppointmentTime" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4">
+                Sales Person :
+            </div>
+            <div class="col-8">
+                <input class="form-control" disabled="disabled" asp-for="Appointments.CustomerName" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4">
+                Is Confirmed
+            </div>
+            <div class="col-8">
+                <input type="checkbox" disabled="disabled" asp-for="Appointments.IsConfirmed" class="form-control" />
+            </div>
+        </div>
+        <div class="">
+            <a asp-action="Index" class="btn btn-success">Back To List</a>
+        </div>
+    </div>
+
+
+
+    <div class="col-6">
+        <table class="table table-striped" style="width: 100%">
+            <tr class="table-info">
+                <th style="text-align: center" width="20%"></th>
+                <th style="text-align: center">
+                    <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().Name)</label>
+                </th>
+                <th style="text-align: center">
+                    <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().Price)</label>
+                </th>
+                <th style="text-align: center">
+                    <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().Count)</label>
+                </th>
+                <th style="text-align: center">
+                    <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().ProductTypes)</label>
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var i in Model.Products)
+            {
+                <tr style="padding: 50px">
+                    <td style="text-align: center">
+                        <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@i.Id">
+                            <img src="@i.Image" style="margin: auto; width: 100%; display: block; border-radius: 5px; border: 1px solid gray" />
+                        </a>
+                    </td>
+                    <td style="text-align: center">
+                        @Html.DisplayFor(e => i.Name)
+                    </td>
+                    <td style="text-align: center">
+                        @i.Price
+                    </td>
+                    <td style="text-align: center">
+                        @i.Count
+                    </td>
+                    <td style="text-align: center">
+                        @i.ProductTypes.Name
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+
+
+        $(document).ready(function () {
+            var data = document.getElementById("datepicker").value;
+            var t = document.getElementById("timepicker").value;
+
+            if (data.indexOf("T") > 0) {
+                data = data.split("T");
+            } else {
+                data = data.split(" ");
+            }
+            var time = data[1];
+
+            var amPm = "";
+            if (data[2] != undefined) {
+                amPm = data[2];
+            }
+
+            //var amPm = data[2];
+            $("#datepicker").attr("value", data[0]);
+            $('#timepicker').attr("value", data[1].substr(0, 5) + " " + amPm);
+        });
+    </script>
+}

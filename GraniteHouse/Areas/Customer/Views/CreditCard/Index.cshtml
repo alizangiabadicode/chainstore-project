@@ -1,0 +1,256 @@
+﻿@model CreditCard
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="text-info text-center">
+    Payment Page
+</h2>
+<br/>
+<form method="post">
+    
+    <div class="row">
+        
+        <div class="col-lg-1 col-0">
+            @*  *@
+        </div>
+
+        <div class="col-lg-4 col-12 border border-secondary rounded pt-2 text-center " >
+
+            <h6 class="text-info">
+                Customer Info
+            </h6><br/>
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="Appointments.CustomerName" readonly id="datepicker"  class="inputG" type="text" required>
+                        <span class="highlight"></span>
+                        <span class=""></span>
+                        <label class="labelG">Customer Name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="Appointments.CustomerEmail" readonly id="datepicker" class="inputG" type="text" required>
+                        <span class="highlight"></span>
+                        <span class=""></span>
+                        <label class="labelG">Customer Email</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="Appointments.CustomerNumber" readonly id="datepicker" class="inputG" type="text" required>
+                        <span class="highlight"></span>
+                        <span class=""></span>
+                        <label class="labelG">Customer Number</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="Appointments.AppointmentTime" readonly id="datepicker" class="inputG" type="text" required>
+                        <span class="highlight"></span>
+                        <span class=""></span>
+                        <label class="labelG">Appointment Time</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="Appointments.AppointmentDate" readonly id="datepicker" class="inputG" type="text" required>
+                        <span class="highlight"></span>
+                        <span class=""></span>
+                        <label class="labelG">Appointment Date</label>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="col-lg-1 col-0">
+            @*  *@
+        </div>
+
+        <div class="col-lg-5 col-12 border border-secondary rounded pt-2 text-center justify-content-center">
+
+            <h6 class="text-info">
+                Enter Account Information
+            </h6><br/>
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="AccountSerialNum"  id="datepicker" class="inputG" type="text" required>
+                        <span class=""></span>
+                        <span class="bar"></span>
+                        <label class="labelG">Account Serial Number</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="Pin"  id="datepicker" class="inputG" type="text" required>
+                        <span class=""></span>
+                        <span class="bar"></span>
+                        <label class="labelG">Pin</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input asp-for="CardExpirationDate"  id="datepicker" class="inputG" type="text" required>
+                        <span class=""></span>
+                        <span class="bar"></span>
+                        <label class="labelG">Card Expiration Date</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bodyG">
+                <div class="container">
+                    <div class="group">
+                        <input value="@Model.SalePrice $ " style="color:red" readonly id="datepicker" class="inputG" type="text" required>
+                        <span class="highlight"></span>
+                        <span class=""></span>
+                        <label class="labelG">$</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="submit" value="Pay :)" class="form-control btn btn-success"><i class="fab fa-amazon-pay"></i></button>
+
+
+        </div>
+
+        <div class="col-lg-1 col-0">
+            @*  *@
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<div class="row p-4 border rounded">
+        <div class="col-4">
+            <div class="row form-group">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <input class="form-control input" readonly="readonly" asp-for="Appointments.CustomerName" />
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <input class="form-control input" readonly="readonly" asp-for="Appointments.AppointmentDate" />
+                </div>
+                <div class="col-1"></div>
+            </div>
+            @*<div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <input asp-for="Appointments." />
+                    </div>
+                    <div class="col-1"></div>
+                </div>*@
+        @*</div>
+        <div class="col-8 ">
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="AccountSerialNum" class="text-info"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="AccountSerialNum" class="form-control" />
+                    <span asp-validation-for="AccountSerialNum" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="Pin" class="text-info"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Pin" class="form-control" />
+                    <span asp-validation-for="Pin" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="CardExpirationDate" class="text-info"></label>
+                </div>
+                <div class="col-8">
+                    <input value="" asp-for="CardExpirationDate" class="form-control" />
+                    <span asp-validation-for="CardExpirationDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="SalePrice" class="text-info"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="SalePrice" readonly="readonly" class="form-control" value="@Model.SalePrice" />
+                </div>
+                <span asp-validation-for="SalePrice"></span>
+            </div>
+            <div class="row form-group">
+                <div class="col-4">
+                </div>
+                <div class="col-8">
+                    <button type="submit" value="Pay :)" class="form-control btn btn-success"><i class="fab fa-amazon-pay"></i></button>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-2"></div>*@
+    @*</div>*@
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

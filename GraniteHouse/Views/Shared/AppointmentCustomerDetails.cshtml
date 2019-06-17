@@ -1,0 +1,64 @@
+﻿@model Appointments
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<h4 class="text-success">Appointment Success</h4>
+<div class="container p-4 border rounded" style="background-color: aliceblue">
+
+    <div class="row form-group">
+        <div class="col-lg-2 col-md-2 col-4">
+            <label asp-for="CustomerName"></label>
+        </div>
+        <div class="col-lg-3 col-md-3 col-8">
+            <input asp-for="CustomerName" class="form-control" readonly="readonly" />
+        </div>
+        <div class="col-lg-2 col-md-2 col-12"></div>
+        <div class="col-lg-2 col-md-2 col-4">
+            <label asp-for="CustomerEmail"></label>
+        </div>
+        <div class="col-lg-3 col-md-3 col-8">
+            <input asp-for="CustomerEmail" class="form-control" readonly="readonly" />
+        </div>
+    </div>
+    <div class="row ">
+
+        <div class="col-lg-2 col-md-2 col-4">
+            <label asp-for="CustomerNumber"></label>
+        </div>
+        <div class="col-lg-3 col-md-3 col-8">
+            <input asp-for="CustomerNumber" class="form-control" readonly="readonly" />
+        </div>
+        <div class="col-lg-2 col-md-2 col-12"></div>
+        <div class="col-lg-2 col-md-2 col-4">
+            <label asp-for="AppointmentDate"></label>
+        </div>
+        <div class="col-lg-3 col-md-3 col-8">
+            <input asp-for="AppointmentDate" id="datepicker" class="form-control" readonly="readonly" />
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                minDate: +1,
+                maxDate: "+3M"
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            var data = document.getElementById("datepicker").value;
+
+            if (data.indexOf("T") > 0) {
+                data = data.split("T");
+            } else {
+                data = data.split(" ");
+            }
+            $("#datepicker").attr("value", data[0]);
+        });
+    </script>
+
+}

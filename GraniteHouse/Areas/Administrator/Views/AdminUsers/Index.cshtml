@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="row">
+
+    <div class="col-6">
+        <h2 class="text-info">Admin Users</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-info " asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i> &nbsp; New Admin User</a>
+    </div>
+
+</div><br/>
+<table class="table table-striped border">
+    <tr class="table-info">
+        <th  style="text-align: center">@Html.DisplayNameFor(m => m.Name)</th>
+        <th style="text-align: center">@Html.DisplayNameFor(m => m.PhoneNumber)</th>
+        <th style="text-align: center">@Html.DisplayNameFor(m => m.Email)</th>
+        <th style="text-align: center">Disabled</th>
+        <th></th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td style="text-align: center">@i.Name</td>
+            <td style="text-align: center">@i.PhoneNumber</td>
+            <td style="text-align: center">@i.Email</td>
+            <td style="text-align: center">
+                @if (i.LockoutEnd != null && i.LockoutEnd > DateTime.Now)
+                {
+                    <label>Disabled</label>
+                }
+            </td>
+            <td style="text-align: center" class="btn-group">
+                @if (i.LockoutEnd == null || i.LockoutEnd < DateTime.Now)
+                {
+                    <a class="btn btn-primary" asp-area="Administrator" asp-controller="AdminUsers" asp-action="Edit"asp-route-id="@i.Id">
+                        <i class="fas fa-user-edit"></i>
+                    </a>
+
+                    <a class="btn btn-danger" href="@Url.Action("Delete/" + i.Id)">
+                        <i class="fas fa-user-minus"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+</table>

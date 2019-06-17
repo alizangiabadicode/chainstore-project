@@ -1,0 +1,122 @@
+﻿@using ChainStore.Models.ViewModel;
+@using ChainStore.Extension;
+@model ProductViewModelForList
+@{
+    ViewData["Title"] = "Index";
+}
+<form method="get">
+    <input name="tag" id="tag" hidden type="text" />
+    <input name="type" id="type" hidden type="text" />
+    <div class="container p-1" style="border-radius:10px">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-md-4 col-sm-12">
+                <div class="htmlselect">
+                    <div class="bodyselect">
+                        <label id="img_category_label" class="field labelselect" for="img_category">
+                            <span class="">Search by Tag</span>
+                            <div id="img_category" class="psuedo_select" name="img_category">
+                                <span id="spantag" class="selected spanselect"></span>
+                                <span class="selected spanselect" id="toclear"></span>
+                                <ul id="img_category_options" class="options ul">
+                                    @for (int i = 0; i < Model.SpecialTags.Count(); i++)
+                                    {
+                                        <li class="option li"  onclick="fillTagInput(this)" data-value="@Model.SpecialTags.ToList()[i].Id">@Model.SpecialTags.ToList()[i].Name</li>
+                                    }
+                                </ul>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-2 col-sm-12 d-flex align-items-center">
+                <br />
+                <br />
+                <button type="submit" class="btn btn-outline-info ml-2"><i class="fas fa-search"></i></button>
+            </div>
+
+
+
+            <div class="col-md-4 col-sm-12">
+                <div class="htmlselect">
+                    <div class="bodyselect">
+                        <label id="img_category_label" class="field labelselect" for="img_category" data-value="">
+                            <span class="">Search by Product Type</span>
+                            <div id="img_category" class="psuedo_select" name="img_category">
+                                <span onchange="fillTypeInput(this)" class="selected spanselect"></span>
+                                <span class="selected spanselect"></span>
+                                <ul id="img_category_options" class="options ul">
+                                    @for (int i = 0; i < Model.ProductTypes.Count(); i++)
+                                    {
+                                        <li class="option li" onclick="fillTypeInput(this)" data-value="@Model.ProductTypes.ToList()[i].Id">@Model.ProductTypes.ToList()[i].Name</li>
+                                    }
+                                </ul>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</form>
+<br />
+<div class="card-columns ml-1 justify-content-center text-center">
+    @foreach (var item in Model.Products)
+    {
+        <div class="card mb-1" style="min-width:200px;max-width:400px;">
+            <img class="card-img-top" style="height:80%; width:100%" ; src="@item.Image" alt="Card-Image" />
+            <div class="card-body" style="">
+                <p class="card-title">@item.Name</p>
+                <div class="d-flex justify-content-between align-content-center">
+                    <div class="">
+                        <label style="font-size: 20px;color:red"><b>$@item.Price</b></label>
+                    </div>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success text-light pull-right btn-">Details</a>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+
+@*<select id="type" name="type" class="form-control">
+        <option value="default">--All-- </option>
+        <option value="Junk Food">Junk Food</option>
+        <option value="washer">washer</option>
+        <option value="Dress">Dress</option>
+        <option value="Makeup">Makeup</option>
+    </select>*@
+@section Scripts{
+    <script>        
+        function fillTagInput(e) {
+            var tag = document.getElementById("tag");
+            var innertext = e.innerText;
+            tag.value = innertext;
+           
+        }
+        function fillTypeInput(e) {
+            var type = document.getElementById("type");
+            type.value = e.innerText;
+        }
+
+        //document.addEventListener('DOMContentLoaded', function () {
+        //    var tag = document.getElementById("tag");
+        //    document.getElementById('spantag').innerText = tag.innerText;
+        //    document.getElementById('toclear').innerText = '';
+        //});
+        //window.onload = function () {
+        //        var tag = document.getElementById("tag");
+        //        document.getElementById('spantag').innerText = tag.innerText;
+        //        document.getElementById('toclear').innerText = '';
+        //    };
+    </script>
+}

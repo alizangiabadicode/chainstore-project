@@ -1,0 +1,246 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+/* basic stylings ------------------------------------------ */
+.bodyG {
+    background: url(https://scotch.io/wp-content/uploads/2014/07/61.jpg);
+}
+
+.container {
+    font-family: "Roboto";
+    width: 600px;
+    margin:  auto 0;
+    display: block;
+    background: #fff;
+    padding: 10px 50px 50px;
+}
+
+.h2G {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+    .h2G .smallG {
+        font-weight: normal;
+        color: #dc1d1d;
+        display: block;
+    }
+
+.footer {
+    text-align: center;
+}
+
+    .footer a {
+        color: #53b2c8;
+    }
+
+/* form starting stylings ------------------------------- */
+.group {
+    margin:4px;
+    position: relative;
+}
+
+.inputG {
+    color:gray;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+.inputG2 {
+    color: gray;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+.inputG:focus {
+    outline: none;
+}
+.inputG2:focus {
+    outline: none;
+}
+
+
+
+/* LABEL ======================================= */
+/* active state */
+
+.labelG {
+    color: #00a2b2;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: -20px;
+    /*transition: 0.2s ease all;*/
+    /*-moz-transition: 0.2s ease all;*/
+    /*-webkit-transition: 0.2s ease all;*/
+}
+
+
+.labelG2 {
+    color: transparent;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: -20px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.inputG:focus ~ .labelG,
+.inputG:valid ~ .labelG {
+    top: -20px;
+    font-size: 14px;
+    color: #00aea4;
+}
+
+
+.inputG2:focus ~ .labelG2,
+.inputG2:valid ~ .labelG2 {
+    top: -20px;
+    font-size: 14px;
+    color: #00a2b2;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+    position: relative;
+    display: block;
+    width: 300px;
+}
+
+.bar2 {
+    position: relative;
+    display: block;
+    width: 300px;
+}
+
+
+    .bar:before,
+    .bar:after {
+        content: "";
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #00a2b2;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .bar2:before,
+    .bar2:after {
+        content: "";
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: transparent;
+        /*transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;*/
+    }
+
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+
+
+.bar2:before {
+    left: 50%;
+}
+
+.bar2:after {
+    right: 50%;
+}
+
+
+
+/* active state */
+.inputG:focus ~ .bar:before,
+.inputG:focus ~ .bar:after {
+    width: 50%;
+}
+
+.inputG2:focus ~ .bar2:before,
+.inputG2:focus ~ .bar2:after {
+    width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* active state */
+.inputG:focus ~ .highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+/* active state */
+.inputG2:focus ~ .highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #00aea4;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background: #dc1d1d;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #00a2b2;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}

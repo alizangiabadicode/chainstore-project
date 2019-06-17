@@ -1,0 +1,163 @@
+﻿@using ChainStore.Utility
+@using ChainStore.Extension
+@model ChainStore.Models.ViewModel.AppointmentDetailViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}<br />
+<h2 class="text-info">Edit</h2>
+<form method="post">
+    <div class="p-4 border rounded">
+        <div class="row">
+            <div class="col-6" style="border-right: 1px solid gray">
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Appointments.CustomerName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" asp-for="Appointments.CustomerName" />
+                    </div>
+                    <span asp-validation-for="Appointments.CustomerName" class="text-danger"></span>
+                </div>
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Appointments.CustomerEmail"></label>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" asp-for="Appointments.CustomerEmail" />
+                    </div>
+                    <span asp-validation-for="Appointments.CustomerEmail" class="text-danger"></span>
+                </div>
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Appointments.CustomerNumber"></label>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" asp-for="Appointments.CustomerNumber" />
+                    </div>
+                    <span asp-validation-for="Appointments.CustomerNumber" class="text-danger"></span>
+                </div>
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Appointments.AppointmentDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" id="datepicker" asp-for="Appointments.AppointmentDate" />
+                    </div>
+                    <span asp-validation-for="Appointments.AppointmentDate" class="text-danger"></span>
+                </div>
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Appointments.AppointmentTime"></label>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="timepicker" value="" asp-for="Appointments.AppointmentTime" />
+                    </div>
+                    <span asp-validation-for="Appointments.AppointmentTime" class="text-danger"></span>
+                </div>
+               
+                <div class="row form-group">
+                    <div class="col-4">
+                        <label asp-for="Appointments.IsConfirmed"></label>
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" asp-for="Appointments.IsConfirmed" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <table class="table table-striped" style="width: 100%">
+                    <tr class="table-info">
+                        <th style="text-align: center" width="20%"></th>
+                        <th style="text-align: center">
+                            <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().Name)</label>
+                        </th>
+                        <th style="text-align: center">
+                            <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().Price)</label>
+                        </th>
+                        <th style="text-align: center">
+                            <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().Count)</label>
+                        </th>
+                        <th style="text-align: center">
+                            <label>@Html.DisplayNameFor(e => e.Products.FirstOrDefault().ProductTypes)</label>
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var i in Model.Products)
+                    {
+                        <tr style="padding: 50px">
+                            <td style="text-align: center">
+                                <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@i.Id">
+                                    <img src="@i.Image" style="margin: auto; width: 100%; display: block; border-radius: 5px; border: 1px solid gray" />
+                                </a>
+                            </td>
+                            <td style="text-align: center">
+                                @Html.DisplayFor(e => i.Name)
+                            </td>
+                            <td style="text-align: center">
+                                @i.Price
+                            </td>
+                            <td style="text-align: center">
+                                @i.Count
+                            </td>
+                            <td style="text-align: center">
+                                @i.ProductTypes.Name
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="btn-group" style="margin-left: 15px">
+                <input type="submit" class="btn btn-primary" value="Update" asp-route-id="@Model.Appointments.Id" />
+                <a class="btn btn-success" asp-action="Index">Back To List</a>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script>
+
+
+        $('#timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 30,
+            minTime: '10',
+            maxTime: '06:00pm',
+
+            startTime: '08:00am',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+
+
+        $(function () {
+            $("#datepicker").datepicker({
+                minDate: +1,
+                maxDate: "+3M"
+            });
+        });
+
+
+        $(document).ready(function () {
+            var data = document.getElementById("datepicker").value;
+            var t = document.getElementById("timepicker").value;
+
+            if (data.indexOf("T") > 0) {
+                data = data.split("T");
+            } else {
+                data = data.split(" ");
+            }
+            var time = data[1];
+
+            var amPm = "";
+            if (data[2] != undefined) {
+                amPm = data[2];
+            }
+
+            //var amPm = data[2];
+            $("#datepicker").attr("value", data[0]);
+            $('#timepicker').attr("value", data[1].substr(0, 5) + " " + amPm);
+        });
+    </script>
+}

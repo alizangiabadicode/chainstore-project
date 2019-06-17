@@ -1,0 +1,58 @@
+﻿@using System.Linq
+@using ChainStore.Extension
+@using Microsoft.AspNetCore.Http
+@model List<Products>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@inject IHttpContextAccessor HttpContextAccessor
+
+<table class="table table-striped" style="width: 100%">
+    <tr class="table-info">
+        <th style="text-align: center" width="20%"></th>
+        <th style="text-align: center">
+            <label asp-for="@Model.FirstOrDefault().Name"></label>
+        </th>
+        <th style="text-align: center">
+            <label asp-for="@Model.FirstOrDefault().Price"></label>
+        </th>
+        <th style="text-align: center">
+            <label asp-for="@Model.FirstOrDefault().Count"></label>
+        </th>
+        <th style="text-align: center">
+            <label asp-for="@Model.FirstOrDefault().ProductTypes"></label>
+        </th>
+        <th></th>
+    </tr>
+    @{
+        var temp = HttpContextAccessor.HttpContext.Session.Get<Dictionary<int, int>>("ls");
+    }
+    @foreach (var i in Model)
+    {
+        <tr style="padding: 50px">
+            <td style="text-align: center">
+                <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@i.Id">
+                    <img src="@i.Image" style="margin: auto; width: 100%; display: block; border-radius: 5px; border: 1px solid gray" />
+                </a>
+            </td>
+            <td style="text-align: center">
+                @Html.DisplayFor(e => i.Name)
+            </td>
+            <td style="text-align: center">
+                @i.Price
+            </td>
+            <td style="text-align: center">
+                 @if (temp.TryGetValue(i.Id, out int value))
+                 {
+                     @value
+                 }
+            </td>
+            <td style="text-align: center">
+                @i.ProductTypes.Name
+            </td>
+            <td style="text-align: center">
+                <a class="btn btn-danger" asp-action="RemoveFromSessionInConfirmation" asp-route-id="@i.Id" asp-route-appoinmentId="@temp[int.MaxValue]"><i class="far fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,27 @@
+﻿@model ChainStore.Models.ViewModel.ShoppingCardViewModel
+@{
+    ViewData["Title"] = "AppointmentConfirmation";
+}
+@*<input hidden asp-for="Appointments.Id"/>*@
+<h2 class="text-info">Appointment Confirmation</h2>
+<div>
+    Your appointment has been scheduled. one of out awesome sales is is going to be done shortly. Please feel free to contact us any time you had any questions.
+</div>
+<br />
+<input hidden asp-for="Appointments.Id" />
+<partial model="@Model.Appointments" name="AppointmentCustomerDetails" />
+<br />
+<partial model="@Model.Products" name="AppointmentProductDetails" />
+<div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6 text-center">
+
+        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-success">Back To The List</a>
+        <a asp-area="Customer" asp-controller="CreditCard" asp-action="Index" asp-route-appointmentId="@Model.Appointments.Id" class="btn btn-primary">Complete the Sale</a>
+    </div>
+    <div class="col-3 text-right">
+    </div>
+</div>
+<br /><br /><br />
+

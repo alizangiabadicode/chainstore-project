@@ -1,0 +1,131 @@
+﻿@using ChainStore.Extension
+@using Microsoft.AspNetCore.Http
+@using ChainStore.Models.ViewModel
+@model ProductsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+<form method="post">
+
+    <div class="row">
+
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h2 class="text-info">Details</h2>
+            <div class="p-4 border rounded row">
+                <div class="col-6">
+                    <div class="row form-group">
+                        <div class="col-8">
+
+                            <div class="bodyG">
+                                <div class="container">
+
+
+                                    <div class="group">
+                                        <input asp-for="Products.Name" readonly class="inputG" type="text" required>
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Name</label>
+                                    </div>
+                                    <br />
+                                    <div class="group">
+                                        <input asp-for="Products.Price" readonly class="inputG2" type="text" required value="$@Model.Products.Price">
+                                        <span class="highlight"></span>
+                                        <span class"></span>
+                                        <label class="labelG">Price</label>
+                                    </div>
+                                    <br />
+
+                                    @{
+                                        var available = Model.Products.Available == true ? "Available" : "Not Available";
+                                    }
+
+                                    <div class="group">
+                                        <input type="text" class="inputG2" required readonly value="@available">
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Available</label>
+                                    </div>
+                                    <br />
+
+
+                                    <div class="group">
+                                        <input asp-for="Products.ProductTypes.Name" readonly class="inputG2" type="text" required>
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Product Type</label>
+                                    </div>
+                                    <br />
+
+
+                                    @*<div class="group">
+                                            <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar2"></span>
+                                            <label class="labelG2">Special Tag</label>
+                                        </div>
+                                        <br />*@
+
+                                    <div class="group">
+                                        <input asp-for="Products.SpecialTags.Name" readonly class="inputG2" type="text" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar2"></span>
+                                        <label class="labelG">Special Tag</label>
+                                    </div>
+                                    <br />
+
+
+                                    @*<div class="group">
+                                            <input type="number" asp-for="SpecialTags.Name" readonly class="inputG2" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar2"></span>
+                                            <label class="labelG2">cccc</label>
+                                        </div>
+                                        <br />*@
+
+
+
+                                    <div class="group">
+                                        <input type="number" readonly id="count" class="inputG" min="0" placeholder="Count" name="value" required asp-for="Products.Count" />
+
+                                        
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Count</label>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                            <button asp-action="Index" onclick="givezerotocount()" class="btn btn-success">
+                                Back To List
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="text-align: center">
+                        <br />
+                        <img src="@Model.Products.Image" style="border: 1px solid gray;border-radius: 5px; width:100%" />
+                        <br /><br />
+                        @if (Model.Products.Available)
+                        {
+                            <img src="~/images/available.png" style="width:50%" alt="Available" />
+                        }
+                        else
+                        {
+                            <img src="~/images/notavailable.jpg" style="width:50%" alt="Not Available" />
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-2"></div>
+        @*<div class="col-1"></div>*@
+    </div>
+    <br />
+
+
+    <div class="col-2"></div>
+</form>

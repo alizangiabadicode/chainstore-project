@@ -1,0 +1,50 @@
+﻿@model Special_Tags
+@{
+    ViewData["Title"] = "Edit";
+}
+<br />
+<form method="post" asp-action="Edit">
+    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+    <div class="row">
+        <div class="col-md-2 col-0"></div>
+        <div class="col-md-8 col-12">
+            <div class="p-4 border rounded">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group row">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-10">
+                        <br />
+                        <div class="bodyG">
+                            <div class="container">
+                                <div class="group">
+                                    <input asp-for="Name" class="inputG" type="text" required>
+                                    <span class=""></span>
+                                    <span class="bar"></span>
+                                    <label class="labelG">Name</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="btn-group ml-3">
+                            <input type="submit" class="btn btn-primary" asp-route-id="@Model.Id" value="Update" />
+                            <a asp-action="Index" class="btn btn-success">Back To List</a>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2 col-0">
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

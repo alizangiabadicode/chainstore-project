@@ -1,0 +1,234 @@
+@using ChainStore.Extension
+@using Microsoft.AspNetCore.Http
+@model Products
+@{
+    ViewData["Title"] = "Details";
+}
+@inject IHttpContextAccessor HttpContextAccessor
+
+<form method="post">
+    @{ var temp = HttpContextAccessor.HttpContext.Session.Get<Dictionary<int, int>>("ls"); }
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+
+
+        <div class="col-8">
+            <h2 class="text-info">Details</h2>
+            <div class="p-4 border rounded row">
+                <div class="col-6">
+                    <div class="row form-group">
+                        <div class="col-8">
+
+                            <div class="bodyG">
+                                <div class="container">
+
+
+                                    <div class="group">
+                                        <input asp-for="Name" readonly class="inputG" type="text" required>
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Name</label>
+                                    </div>
+                                    <br />
+                                    <div class="group">
+                                        <input asp-for="Price" readonly class="inputG2" type="text" required value="$@Model.Price">
+                                        <span class="highlight"></span>
+                                        <span class"></span>
+                                        <label class="labelG">Price</label>
+                                    </div>
+                                    <br />
+
+                                    @{
+                                        var available = Model.Available == true ? "Available" : "Not Available";
+                                    }
+
+                                    <div class="group">
+                                        <input type="text" class="inputG2" required readonly value="@available">
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Available</label>
+                                    </div>
+                                    <br />
+
+
+                                    <div class="group">
+                                        <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
+                                        <span class="highlight"></span>
+                                        <span class=""></span>
+                                        <label class="labelG">Product Type</label>
+                                    </div>
+                                    <br />
+
+
+                                    @*<div class="group">
+            <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar2"></span>
+            <label class="labelG2">Special Tag</label>
+        </div>
+        <br />*@
+
+                                    <div class="group">
+                                        <input asp-for="SpecialTags.Name" readonly class="inputG2" type="text" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar2"></span>
+                                        <label class="labelG">Special Tag</label>
+                                    </div>
+                                    <br />
+
+
+                                    @*<div class="group">
+                                        <input type="number" asp-for="SpecialTags.Name" readonly class="inputG2" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar2"></span>
+                                        <label class="labelG2">cccc</label>
+                                    </div>
+                                    <br />*@
+
+
+
+                                    <div class="group">
+                                        @*<input asp-for="Count" readonly class="inputG2" type="text" required>*@
+                                        @if (temp != null && temp.ContainsKey(Model.Id))
+                                        {
+                                            <input type="number" onerror="givezerotocount()" max="@Model.Count" id="count" class="inputG" min="0" placeholder="Count" name="value" required value="1" asp-for="Count" />
+                                         
+                                        }
+                                        else
+                                        {
+                                            <input min="0" onchange="givezerotocount()" max="@Model.Count" type="number" id="count" class="inputG" placeholder="Count"name="value" required value="1" asp-for="Count" />
+                                        }
+
+                                        <span class=""></span>
+                                        <span class="bar"></span>
+                                        <label class="labelG">Count</label>
+                                    </div>
+                                    <br />
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="btn-group">
+
+                                @if (Model.Available)
+                                {
+                                    if (temp != null && temp.ContainsKey(Model.Id))
+                                    {
+                                        <button type="submit" class="btn btn-danger" asp-action="Remove" asp-route-id="@Model.Id">Remove From Card</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-primary" type="submit">Add To Card</button>
+                                    }
+                                }
+
+                                <button asp-action="Index" onclick="givezerotocount()" class="btn btn-success">
+                                    Back To List
+                                </button>
+                                @*<button>
+                                        Back To List
+                                    </button>                                <button>
+                                        Back To List
+                                    </button>                                <button>
+                                        Back To List
+                                    </button>*@
+
+                            </div>
+
+
+                            @*<input asp-for="Name" readonly="readonly" class="form-control" />*@
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                    @*<div class="row form-group">
+                            <div class="col-4">
+                                <label asp-for="Price" class="text-info"></label>
+                            </div>
+                            <div class="col-8">
+                                <input readonly="readonly" asp-for="Price" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-4">
+                                <label asp-for="ProductTypes" class="text-info"></label>
+                            </div>
+                            <div class="col-8">
+                                <input readonly="readonly" asp-for="ProductTypes.Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-4">
+                                <label asp-for="SpecialTags" class="text-info"></label>
+                            </div>
+                            <div class="col-8">
+                                <input readonly="readonly" asp-for="SpecialTags.Name" class="form-control" />
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-4">
+                                <label asp-for="Count" class="text-info"></label>
+                            </div>
+                            <div class="col-8">
+                                @if (temp != null && temp.ContainsKey(Model.Id))
+                                {
+                                    <input min="0" disabled="disabled" name="value" required value="1" asp-for="Count" class="form-control" />
+                                }
+                                else
+                                {
+                                    <input min="0" name="value" required value="1" asp-for="Count" class="form-control" />
+                                }
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-4">
+                                <label style="text-align: center" class="text-danger">@ViewBag.Error</label>
+                            </div>
+                            <div class="col-8">
+                                @if (Model.Available)
+                                {
+                                    if (temp != null && temp.ContainsKey(Model.Id))
+                                    {
+                                        <button class="btn btn-danger form-control" type="submit" asp-action="Remove" asp-route-id="@Model.Id">Remove From Card</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-success form-control" type="submit">Add To Card</button>
+                                    }
+                                }
+                            </div>
+
+                        </div>*@
+
+                </div>
+                @*<div class="col-1"></div>*@
+                <div class="col-6" style="text-align: center">
+                    <br />
+                    <img src="@Model.Image" style="border: 1px solid gray;border-radius: 5px; width:100%" />
+                    <br /><br />
+                    @if (Model.Available)
+                    {
+                        <img src="~/images/available.png" style="width:50%" alt="Available" />
+                    }
+                    else
+                    {
+                        <img src="~/images/notavailable.jpg" style="width:50%" alt="Not Available" />
+                    }
+                </div>
+            </div>
+            <br />
+        </div>
+
+
+        <div class="col-2"></div>
+    </div>
+</form>
