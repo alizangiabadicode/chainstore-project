@@ -14,7 +14,7 @@
 
         <div class="col-2"></div>
         <div class="col-8">
-            <h2 class="text-info">Details</h2>
+            <h2 class="text-info ">Details</h2>
             <div class="p-4 border rounded row">
                 <div class="col-2"></div>
                 <div class="col-8">
@@ -24,18 +24,18 @@
 
 
                             <div class="group">
-                                <input asp-for="Products.Name" class="inputG" type="text" required>
+                                <input asp-for="Products.Name" class="inputG slide-in-elliptic-top-fwd" type="text" required>
                                 <span class=""></span>
                                 <span class="bar"></span>
-                                <label class="labelG">Name</label>
+                                <label class="labelG slide-in-elliptic-top-fwd">Name</label>
                             </div>
                             <span class="text-danger" asp-validation-for="Products.Name"></span>
                             <br /><br />
                             <div class="group">
-                                <input asp-for="Products.Price" class="inputG" type="text" required>
+                                <input asp-for="Products.Price" class="inputG slide-in-elliptic-top-fwd" type="text" required>
                                 <span class=""></span>
                                 <span class="bar"></span>
-                                <label class="labelG">Price</label>
+                                <label class="labelG slide-in-elliptic-top-fwd">Price</label>
                             </div>
                             <span class="text-danger" asp-validation-for="Products.Price"></span>
                             <br /><br />
@@ -45,10 +45,10 @@
                             }
 
                             <div class="group">
-                                <input type="checkbox" class="inputG" asp-for="Products.Available">
+                                <input type="checkbox" class="inputG slide-in-elliptic-top-fwd" asp-for="Products.Available">
                                 <span class=""></span>
                                 <span class=""></span>
-                                <label class="labelG">Available</label>
+                                <label class="labelG slide-in-elliptic-top-fwd">Available</label>
                             </div>
 
                             <br />
@@ -75,9 +75,9 @@
 
         </div>*@
                             <br />
-                            <select class="form-control " style="width: 70%" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
+                            <select class="form-control slide-in-elliptic-top-fwd" style="width: 70%" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
                             <br />
-                            <select class="form-control" style="width: 70%" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
+                            <select class="form-control slide-in-elliptic-top-fwd" style="width: 70%" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
 
                             @*<div class="group">
             <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
@@ -108,7 +108,7 @@
         </div>*@
                             <br />
 
-                            <input asp-for="Products.Image" class="form-control" style="width: 70%" type="file">
+                            <input asp-for="Products.Image" class="form-control slide-in-elliptic-top-fwd" style="width: 70%" type="file">
 
                             <br />
 
@@ -124,19 +124,19 @@
 
 
                             <div class="group">
-                                <input type="number" id="count" class="inputG" min="0" placeholder="Count" required value="0" asp-for="Products.Count" />
+                                <input type="number" id="count" class="inputG slide-in-elliptic-top-fwd" min="0" placeholder="Count" required value="0" asp-for="Products.Count" />
 
 
                                 <span class=""></span>
                                 <span class="bar"></span>
-                                <label class="labelG">Count</label>
+                                <label class="labelG slide-in-elliptic-top-fwd">Count</label>
                             </div>
                             <span class="text-danger" asp-validation-for="Products.Price"></span>
                             <br />
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button class="btn btn-primary" type="submit">Create</button>
+                        <button class="btn btn-primary slide-in-elliptic-top-fwd" type="submit">Create</button>
                         <button asp-action="Index" onclick="givezerotocount()" class="btn btn-success">
                             Back To List
                         </button>

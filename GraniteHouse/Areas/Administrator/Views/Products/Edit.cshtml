@@ -12,7 +12,7 @@
         <div class="col-2"></div>
         <div class="col-8">
             <h2 class="text-info">Edit</h2>
-            <div class="p-4 border rounded row">
+            <div class="p-4 border rounded row slide-in-bck-center">
                 <div class="col-6">
                     <div class="row form-group">
                         <div class="col-8">
@@ -22,17 +22,17 @@
 
 
                                     <div class="group">
-                                        <input asp-for="Products.Name"  class="inputG" type="text" required>
+                                        <input asp-for="Products.Name"  class="inputG slide-in-bck-center" type="text" required>
                                         <span class=""></span>
                                         <span class="bar"></span>
-                                        <label class="labelG">Name</label>
+                                        <label class="labelG slide-in-bck-center">Name</label>
                                     </div>
                                     <br />
                                     <div class="group">
-                                        <input asp-for="Products.Price"  class="inputG" type="tel" required value="@Model.Products.Price" />
+                                        <input asp-for="Products.Price"  class="inputG slide-in-bck-center" type="tel" required value="@Model.Products.Price" />
                                         <span class=""></span>
                                         <span class="bar"></span>
-                                        <label class="labelG">Price</label>
+                                        <label class="labelG slide-in-bck-center">Price</label>
                                     </div>
                                     <br />
 
@@ -41,18 +41,18 @@
                                     }
 
                                     <div class="group">
-                                        <input type="checkbox" class="inputG" asp-for="Products.Available"  >
+                                        <input type="checkbox" class="inputG slide-in-bck-center" asp-for="Products.Available"  >
                                         <span class=""></span>
                                         <span class=""></span>
-                                        <label class="labelG">Available</label>
+                                        <label class="labelG slide-in-bck-center">Available</label>
                                     </div>
                                     <br />
 
 
                                     <br />
-                                    <select class="form-control " style="width: 100%" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
+                                    <select class="form-control slide-in-bck-center" style="width: 100%" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
                                     <br />
-                                    <select class="form-control" style="width: 100%" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
+                                    <select class="form-control slide-in-bck-center" style="width: 100%" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
 
                                     <br/>
                                     @*<div class="group">
@@ -83,19 +83,19 @@
 
 
                                     <div class="group">
-                                        <input type="number"  id="count" class="inputG" min="0" placeholder="Count" required value="@Model.Products.Count" asp-for="Products.Count" />
+                                        <input type="number"  id="count" class="inputG slide-in-bck-center" min="0" placeholder="Count" required value="@Model.Products.Count" asp-for="Products.Count" />
 
 
                                         <span class=""></span>
                                         <span class="bar"></span>
-                                        <label class="labelG">Count</label>
+                                        <label class="labelG slide-in-bck-center">Count</label>
                                     </div>
                                     <br />
                                 </div>
                             </div>
                             <div class="btn-group">
-                                <button asp-action="Edit" class="btn btn-primary" type="submit" asp-route-id="@Model.Products.Id">Update</button>
-                                <button asp-action="Index" onclick="givezerotocount()" class="btn btn-success">
+                                <button asp-action="Edit" class="btn btn-primary slide-in-bck-center" type="submit" asp-route-id="@Model.Products.Id">Update</button>
+                                <button asp-action="Index" onclick="givezerotocount()" class="btn btn-success slide-in-bck-center">
                                     Back To List
                                 </button>
                             </div>
@@ -105,15 +105,15 @@
                 <div class="col-6">
                     <div style="text-align: center">
                         <br />
-                        <img src="@Model.Products.Image" style="border: 1px solid gray;border-radius: 5px; width:100%" />
+                        <img src="@Model.Products.Image" class="slide-in-bck-center" style="border: 1px solid gray;border-radius: 5px; width:100%" />
                         <br /><br />
                         @if (Model.Products.Available)
                         {
-                            <img src="~/images/available.png" style="width:50%" alt="Available" />
+                            <img src="~/images/available.png" class="slide-in-bck-center" style="width:50%" alt="Available" />
                         }
                         else
                         {
-                            <img src="~/images/notavailable.jpg" style="width:50%" alt="Not Available" />
+                            <img src="~/images/notavailable.jpg" class="slide-in-bck-center" style="width:50%" alt="Not Available" />
                         }
                     </div>
 

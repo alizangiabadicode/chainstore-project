@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+
 <form method="get">
     <input name="tag" id="tag" hidden type="text" />
     <input name="type" id="type" hidden type="text" />
@@ -21,7 +23,7 @@
                                 <ul id="img_category_options" class="options ul">
                                     @for (int i = 0; i < Model.SpecialTags.Count(); i++)
                                     {
-                                        <li class="option li"  onclick="fillTagInput(this)" data-value="@Model.SpecialTags.ToList()[i].Id">@Model.SpecialTags.ToList()[i].Name</li>
+                                        <li class="option li" onclick="fillTagInput(this)" data-value="@Model.SpecialTags.ToList()[i].Id">@Model.SpecialTags.ToList()[i].Name</li>
                                     }
                                 </ul>
                             </div>
@@ -96,27 +98,39 @@
         <option value="Makeup">Makeup</option>
     </select>*@
 @section Scripts{
-    <script>        
+    @if (ViewBag.congrats != null && ViewBag.congrats)
+    {
+        <script>
+            swal({
+                title: "Good job!",
+                text: "The Sale is Done!",
+                icon: "success",
+                button: "go for the next sale!!!",
+            });
+        </script>
+
+    }
+    <script>
         function fillTagInput(e) {
             var tag = document.getElementById("tag");
             var innertext = e.innerText;
             tag.value = innertext;
-           
+
         }
         function fillTypeInput(e) {
             var type = document.getElementById("type");
             type.value = e.innerText;
         }
 
-        //document.addEventListener('DOMContentLoaded', function () {
-        //    var tag = document.getElementById("tag");
-        //    document.getElementById('spantag').innerText = tag.innerText;
-        //    document.getElementById('toclear').innerText = '';
-        //});
-        //window.onload = function () {
-        //        var tag = document.getElementById("tag");
-        //        document.getElementById('spantag').innerText = tag.innerText;
-        //        document.getElementById('toclear').innerText = '';
-        //    };
+            //document.addEventListener('DOMContentLoaded', function () {
+            //    var tag = document.getElementById("tag");
+            //    document.getElementById('spantag').innerText = tag.innerText;
+            //    document.getElementById('toclear').innerText = '';
+            //});
+            //window.onload = function () {
+            //        var tag = document.getElementById("tag");
+            //        document.getElementById('spantag').innerText = tag.innerText;
+            //        document.getElementById('toclear').innerText = '';
+            //    };
     </script>
 }

@@ -19,9 +19,9 @@
 else
 {
 
-<h2 class="text-info">Shopping Card</h2>
+<h2 class="text-info slide-in-left">Shopping Card</h2>
 
-<div class="container border border-secondary rounded" style="padding: 15px">
+<div class="container border border-secondary rounded " style="padding: 15px">
     <div class="row">
             <div class="col-md-8 col-12" style="border-right: 1px solid black">
         <form method="post">
@@ -29,7 +29,7 @@ else
 
             @{ var temp = HttpContextAccessor.HttpContext.Session.Get<Dictionary<int, int>>("ls"); }
 
-                <table class="table table-striped" style="width: 100%">
+                <table class="table table-striped slide-in-left" style="width: 100%">
                     <tr class="table-info">
                         <th style="text-align: center" width="20%"></th>
                         <th style="text-align: center">
@@ -79,11 +79,11 @@ else
             </div>
             <div class="col-4 text-center">
         <form method="post">
-                <h6 class=" text-primary ">
+                <h6 class=" text-primary slide-in-right ">
                     Fillout The Form
                 </h6>
             <br/>
-                <div class="bodyG">
+                <div class="bodyG slide-in-right">
                     <div class="container">
                         <div class="group">
                             <input asp-for="Appointments.CustomerName" class="inputG" type="text" required>
@@ -97,7 +97,7 @@ else
                 @*<div class="col-12">
                         <input class="form-control" asp-for="Appointments.CustomerName" />
                     </div>*@
-                <div class="bodyG">
+                <div class="bodyG slide-in-right">
                     <div class="container">
                         <div class="group">
                             <input asp-for="Appointments.CustomerNumber" class="inputG" type="tel" required>
@@ -117,7 +117,7 @@ else
 
                         <label asp-for="Appointments.CustomerEmail"></label> :
                     </div>*@
-                <div class="row">
+                <div class="row slide-in-right">
                     <div class="col-12">
                         <div class="bodyG">
                             <div class="container">
@@ -137,7 +137,7 @@ else
                 @*<div class="col-12">
                         <label asp-for="Appointments.AppointmentDate"></label> :
                     </div>*@
-                <div class="row">
+                <div class="row slide-in-right">
                     <div class="col-12">
                         <div class="bodyG">
                             <div class="container">
@@ -157,7 +157,7 @@ else
                 @*<div class="col-12">
                         <label asp-for="Appointments.AppointmentTime"></label> :
                     </div>*@
-                <div class="row">
+                <div class="row slide-in-right">
                     <div class="col-12">
                         <div class="bodyG">
                             <div class="container">
@@ -175,7 +175,7 @@ else
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-success" asp-for="Appointments.AppointmentTime" id="btnPlaceHolder" type="submit">Schedule Appointment</button>
+                    <button class="btn btn-success slide-in-right" asp-for="Appointments.AppointmentTime" id="btnPlaceHolder" type="submit">Schedule Appointment</button>
                 </div>
 
         </form>

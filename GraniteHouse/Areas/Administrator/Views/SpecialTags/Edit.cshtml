@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-2 col-0"></div>
         <div class="col-md-8 col-12">
-            <div class="p-4 border rounded">
+            <div class="p-4 border rounded roll-in-blurred-bottom">
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group row">
                     <div class="col-1">
@@ -19,10 +19,10 @@
                         <div class="bodyG">
                             <div class="container">
                                 <div class="group">
-                                    <input asp-for="Name" class="inputG" type="text" required>
+                                    <input asp-for="Name" class="inputG roll-in-blurred-bottom" type="text" required>
                                     <span class=""></span>
                                     <span class="bar"></span>
-                                    <label class="labelG">Name</label>
+                                    <label class="labelG roll-in-blurred-bottom">Name</label>
                                 </div>
                             </div>
                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -30,8 +30,8 @@
 
 
                         <div class="btn-group ml-3">
-                            <input type="submit" class="btn btn-primary" asp-route-id="@Model.Id" value="Update" />
-                            <a asp-action="Index" class="btn btn-success">Back To List</a>
+                            <input type="submit" class="btn btn-primary roll-in-blurred-bottom" asp-route-id="@Model.Id" value="Update" />
+                            <a asp-action="Index" class="btn btn-success roll-in-blurred-bottom">Back To List</a>
                         </div>
                     </div>
                     <div class="col-1"></div>

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+<h3 class="text-info text-center">Choose the ORM</h3>
+<form method="get">
+    <div class="row">
+        <div class="col-0 col-md-4"></div>
+        <div class="col-12 col-md-4 border rounded border-info p-4">
+            <select class="form-control" name="number">
+                <option value="1">Using Queries</option>
+                <option value="0">Using EnityFrameWork</option>
+            </select>
+            <br/>
+            <button class="btn btn-outline-primary" type="submit">Enter</button>
+        </div>
+        <div class="col-0 col-md-4"></div>
+    </div>
+</form>
+@section Scripts
+{
+    @if (ViewBag.changed != null && ViewBag.changed)
+    {
+        <script>
+            swal("The ORM Changed!", "Now the you are using "+ @ViewBag.text);
+        </script>
+    }
+}

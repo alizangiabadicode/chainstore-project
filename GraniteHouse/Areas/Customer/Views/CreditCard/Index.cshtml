@@ -3,19 +3,20 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2 class="text-info text-center">
+<br/>
+<h2 class="text-info text-center slide-in-top">
     Payment Page
 </h2>
 <br/>
 <form method="post">
     <input hidden asp-for="SalePrice"/>
-    <div class="row">
+    <div class="row ">
         
         <div class="col-lg-1 col-0">
             @*  *@
         </div>
 
-        <div class="col-lg-4 col-12 border border-secondary rounded pt-2 text-center " >
+        <div class="col-lg-4 col-12 border border-secondary rounded pt-2 text-center slide-in-left " >
 
             <h6 class="text-info">
                 Customer Info
@@ -86,7 +87,7 @@
             @*  *@
         </div>
 
-        <div class="col-lg-5 col-12 border border-secondary rounded pt-2 text-center justify-content-center">
+        <div class="col-lg-5 col-12 border border-secondary rounded pt-2 text-center justify-content-center slide-in-right">
 
             <h6 class="text-info">
                 Enter Account Information
@@ -139,7 +140,7 @@
             </div>
 
 
-            <button type="submit" value="Pay :)" class="form-control btn btn-success"><i class="fab fa-amazon-pay"></i></button>
+            <button type="submit" value="Pay :)" class="form-control btn btn-outline-success rotate-in-center"><i class="fab fa-amazon-pay"></i></button>
 
 
         </div>

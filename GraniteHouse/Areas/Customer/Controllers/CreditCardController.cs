@@ -125,6 +125,7 @@ namespace Chain_Store.Areas.Customer.Controllers
 
             Dictionary<int, int> dic = new Dictionary<int, int>();
             HttpContext.Session.Set("ls", dic);
+            TempData["congrats"] = 1;
             return RedirectToAction("Index", "Home");
         }
     }

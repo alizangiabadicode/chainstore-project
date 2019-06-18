@@ -36,8 +36,10 @@ namespace ChainStore.Controllers
             //ProductViewModelForList vm = new ProductViewModelForList();
             //vm.tag = tag;
             //vm.type = type;
-
-
+            if (TempData["congrats"] != null && Convert.ToInt32(TempData["congrats"]) == 1)
+            {
+                ViewBag.congrats = true;
+            }
             bool tagg = true, typee = true;
             if (vm.tag == null)
                 tagg = false;

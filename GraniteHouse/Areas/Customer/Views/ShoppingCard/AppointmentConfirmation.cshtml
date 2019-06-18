@@ -3,16 +3,16 @@
     ViewData["Title"] = "AppointmentConfirmation";
 }
 @*<input hidden asp-for="Appointments.Id"/>*@
-<h2 class="text-info">Appointment Confirmation</h2>
-<div>
+<h2 class="text-info slide-in-top">Appointment Confirmation</h2>
+<div class="slide-in-top">
     Your appointment has been scheduled. one of out awesome sales is is going to be done shortly. Please feel free to contact us any time you had any questions.
 </div>
 <br />
 <input hidden asp-for="Appointments.Id" />
-<partial model="@Model.Appointments" name="AppointmentCustomerDetails" />
+<partial model="@Model.Appointments"  name="AppointmentCustomerDetails" />
 <br />
-<partial model="@Model.Products" name="AppointmentProductDetails" />
-<div class="row">
+<partial model="@Model.Products" class="slide-in-right" name="AppointmentProductDetails" />
+<div class="row slide-in-left">
     <div class="col-3">
     </div>
     <div class="col-6 text-center">

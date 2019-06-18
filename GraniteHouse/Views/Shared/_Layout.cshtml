@@ -10,6 +10,9 @@
     <title>@ViewData["Title"] - ChainStore</title>
 
     <environment include="Development">
+        @*<link rel="stylesheet" href="sweetalert2.min.css">*@
+        <link rel="stylesheet" href="~/css/popup.css"/>
+
         <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="~/css/stylesaminista.css" />
         <link rel="stylesheet" href="~/css/buttonscss.css" />
@@ -24,6 +27,9 @@
 
 
     <environment exclude="Development">
+        @*<link rel="stylesheet" href="sweetalert2.min.css">*@
+        <link rel="stylesheet" href="~/css/popup.css" />
+
         <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="~/css/stylesaminista.css" />
         <link rel="stylesheet" href="~/css/buttonscss.css" />
@@ -70,6 +76,9 @@
                             <a class="nav-link" asp-area="Administrator" asp-controller="Appointments" asp-action="SuccessFullAppointments">Successfull Appointments</a>
                         </li>
 
+                    <li style="color: white">
+                        <a class="nav-link" asp-area="Administrator" asp-controller="ORM" asp-action="Index">ORM</a>
+                    </li>
                     }
                     <li style="color: white">
                         <a class="nav-link" asp-area="Customer" asp-controller="ShoppingCard" asp-action="Index">
@@ -101,26 +110,30 @@
     <div class="container body-content" style="font-family: 'Fira Sans', sans-serif;">
         @RenderBody()
     </div>
-    <environment include="Development">
-        <script src="~/js/selectjs.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
-        <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    </environment>
+<environment include="Development">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <environment exclude="Development">
-        <script src="~/js/selectjs.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
-        <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/selectjs.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</environment>
 
-    </environment>
+<environment exclude="Development">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="~/js/selectjs.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+</environment>
 
     @RenderSection("Scripts", required: false)
 </body>
