@@ -6,23 +6,23 @@
 <br/>
 <div class="row">
     <div class="col-6">
-        <h2 class="text-info">Product Names</h2>
+        <h2 class="text-info tracking-in-contract-bck-bottom">Product Names</h2>
     </div>
-    <div class="col-6 text-right">
+    <div class="col-6 text-right tracking-in-contract-bck-bottom">
         <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;New Product Type</a>
     </div>
 </div>
 <br/>
 <div>
     <table class="table table-striped border">
-        <tr class="table-info">
+        <tr class="table-info tracking-in-contract-bck-bottom">
             <th>@Html.DisplayNameFor(x=>x.Name)</th>
             <th></th>
             <th></th>
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="tracking-in-contract-bck-bottom">
                 <td>@item.Name</td>
                 <td>
                     <partial name="_TableButtonPartial" model="@item.Id"/>

@@ -8,7 +8,7 @@
 </h2>
 <br/>
 <form method="post">
-    
+    <input hidden asp-for="SalePrice"/>
     <div class="row">
         
         <div class="col-lg-1 col-0">
@@ -129,11 +129,12 @@
             <div class="bodyG">
                 <div class="container">
                     <div class="group">
-                        <input value="@Model.SalePrice $ " style="color:red" readonly id="datepicker" class="inputG" type="text" required>
+                        <input value="@Model.SalePrice $" style="color:red" readonly  class="inputG" type="text">
                         <span class="highlight"></span>
                         <span class=""></span>
                         <label class="labelG">$</label>
                     </div>
+                    <span class="text-danger" asp-validation-for="SalePrice "></span>
                 </div>
             </div>
 
@@ -253,4 +254,10 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    
+    <script>
+        function changetheprice(e) {
+            e.value = e.value.split(" ")[0];
+        }
+    </script>
 }

@@ -8,18 +8,18 @@
 }
 @inject IHttpContextAccessor HttpContextAccessor
 
-<h2 class="text-info">Shopping Card</h2>
 
 @if (Model.Products.Count == 0)
 {
-    <div>
-        There is no product in shopping card
+    <div class="kenburns-top">
+            <img src="~/images/empty_cart.jpg" class="img-fluid rounded mx-auto d-block" style=""/>
     </div>
 
 }
 else
 {
 
+<h2 class="text-info">Shopping Card</h2>
 
 <div class="container border border-secondary rounded" style="padding: 15px">
     <div class="row">

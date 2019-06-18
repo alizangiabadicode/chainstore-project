@@ -260,6 +260,30 @@ namespace ChainStore.Data.Traditional
             connection.Close();
         }
 
+        public List<ProductsSelectedForAppointment> retpsa_with_ai(int ai)
+        {
+            List<ProductsSelectedForAppointment> ls = new List<ProductsSelectedForAppointment>();
+            SqlCommand cmd = new SqlCommand("retpsa_with_ai", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter pmt = new SqlParameter("@ai", SqlDbType.Int);
+            pmt.Value = ai;
+            cmd.Parameters.Add(pmt);
+            connection.Open();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ls.Add(new ProductsSelectedForAppointment()
+                {
+                    Id = Convert.ToInt32(reader[0]),
+                    AppointmentId = Convert.ToInt32(reader[1]),
+                    ProductId = Convert.ToInt32(reader[2]),
+                    Count = Convert.ToInt32(reader[3])
+                });
+            }
+            connection.Close();
+            return ls;
+        }
+
         public void include_pt_st(List<Products> ls)
         {
             foreach (Products i in ls)
@@ -638,6 +662,29 @@ namespace ChainStore.Data.Traditional
             connection.Close();
         }
 
+        public int incredit(CreditCard input)
+        {
+            int output = 0;
+            SqlCommand cmd = new SqlCommand("incredit", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter pmt1 = new SqlParameter("@AccountSerialNum", SqlDbType.NVarChar);
+            pmt1.Value = input.AccountSerialNum;
+            SqlParameter pmt2 = new SqlParameter("@SalePrice", SqlDbType.Decimal);
+            pmt2.Value = input.SalePrice;
+            SqlParameter pmt3 = new SqlParameter("@AppointmentId", SqlDbType.Int);
+            pmt3.Value = input.AppointmentId;
+            cmd.Parameters.Add(pmt1);
+            cmd.Parameters.Add(pmt2);
+            cmd.Parameters.Add(pmt3);
+            connection.Open();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                output = Convert.ToInt32(reader[0]);
+            }
+            connection.Close();
+            return output;
+        }
 
     }
 }

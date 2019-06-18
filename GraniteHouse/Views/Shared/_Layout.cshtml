@@ -10,6 +10,8 @@
     <title>@ViewData["Title"] - ChainStore</title>
 
     <environment include="Development">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/stylesaminista.css" />
         <link rel="stylesheet" href="~/css/buttonscss.css" />
         <link rel="stylesheet" href="~/css/selectstylesheet.css" />
         <link rel="stylesheet" href="~/css/inputGoogleMaterial.css" />
@@ -22,6 +24,8 @@
 
 
     <environment exclude="Development">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/stylesaminista.css" />
         <link rel="stylesheet" href="~/css/buttonscss.css" />
         <link rel="stylesheet" href="~/css/selectstylesheet.css" />
         <link rel="stylesheet" href="~/css/inputGoogleMaterial.css" />
@@ -94,7 +98,7 @@
     </div>
     @*<partial name="_CookieConsentPartial" />*@
 
-    <div class="container body-content">
+    <div class="container body-content" style="font-family: 'Fira Sans', sans-serif;">
         @RenderBody()
     </div>
     <environment include="Development">

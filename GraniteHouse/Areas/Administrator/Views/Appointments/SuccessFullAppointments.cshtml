@@ -2,37 +2,37 @@
 @model ChainStore.Models.ViewModel.AppointmentViewModel
 <form method="get">
     <br />
-    <h2 class="text-info">
+    <h2 class="text-info scale-up-center">
         Appointment List
     </h2>
-    <div style="background-color: aliceblue;" class="container">
-        <div class="row" style=" padding: 15px; ">
-            <div class="col-lg-2 col-md-2 col-4">
+    <div  class="container">
+        <div class="row" style="background-color: aliceblue; padding: 15px; ">
+            <div class="col-lg-2 col-md-2 col-4 scale-up-center">
                 Customer Name
             </div>
-            <div class="col-lg-3 col-md-3 col-8">
+            <div class="col-lg-3 col-md-3 col-8 scale-up-center">
                 @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control" } })
             </div>
-            <div class="col-lg-2 col-md-2 col-12"></div>
-            <div class="col-lg-2 col-md-2 col-4">
+            <div class="col-lg-2 col-md-2 col-12 "></div>
+            <div class="col-lg-2 col-md-2 col-4 scale-up-center">
                 Customer Email
             </div>
-            <div class="col-lg-3 col-md-3 col-8">
+            <div class="col-lg-3 col-md-3 col-8 scale-up-center">
                 @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
         <div class="row" style="padding: 15px">
-            <div class="col-lg-2 col-md-2 col-4">
+            <div class="col-lg-2 col-md-2 col-4 scale-up-center">
                 Phone Number
             </div>
-            <div class="col-lg-3 col-md-3 col-8">
+            <div class="col-lg-3 col-md-3 col-8 scale-up-center">
                 @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-lg-2 col-md-2 col-12"></div>
-            <div class="col-lg-2 col-md-2 col-4">
+            <div class="col-lg-2 col-md-2 col-4 scale-up-center">
                 Appointment Date
             </div>
-            <div class="col-lg-3 col-md-3 col-8">
+            <div class="col-lg-3 col-md-3 col-8 scale-up-center">
                 @Html.Editor("searchDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
             </div>
         </div>
@@ -44,19 +44,19 @@
             <div class="col-lg-2 col-md-2 col-12"></div>
             <div class="col-lg-2 col-md-2 col-4">
             </div>
-            <div class="col-lg-3 col-md-3 col-8">
+            <div class="col-lg-3 col-md-3 col-8 scale-up-center">
                 <button type="submit" class="btn btn-primary form-control">
                     <i class="fas fa-search"></i>&nbsp; Search
                 </button>
             </div>
         </div>
 
-    </div>
+   
     <br /><br />
     <div class="row container">
         <div class="col-md-12 col-12">
             <table class="table table-striped border">
-                <tr class="table-info">
+                <tr class="table-info scale-up-center">
                   
                     <th>@Html.DisplayNameFor(e => e.Appointments.FirstOrDefault().AppointmentDate)</th>
                     <th>@Html.DisplayNameFor(e => e.Appointments.FirstOrDefault().CustomerName)</th>
@@ -66,7 +66,7 @@
                 </tr>
                 @foreach (var i in Model.Appointments)
                 {
-                    <tr>
+                    <tr class="scale-up-center">
                         
                         <td>@Html.DisplayFor(e => i.AppointmentDate)</td>
                         <td>@Html.DisplayFor(e => i.CustomerName)</td>
@@ -79,6 +79,7 @@
                 }
             </table>
         </div>
+    </div>
     </div>
 </form>
 @section Scripts{

@@ -28,20 +28,20 @@
                         <div class="col-8">
 
                             <div class="bodyG">
-                                <div class="container">
+                                <div class="container focus-in-contract ">
 
 
                                     <div class="group">
-                                        <input asp-for="Name" readonly class="inputG" type="text" required>
+                                        <input asp-for="Name" readonly class="inputG focus-in-expand " type="text" required>
                                         <span class="highlight"></span>
                                         <span class=""></span>
                                         <label class="labelG">Name</label>
                                     </div>
                                     <br />
                                     <div class="group">
-                                        <input asp-for="Price" readonly class="inputG2" type="text" required value="$@Model.Price">
+                                        <input asp-for="Price" readonly class="inputG focus-in-expand " type="text" required value="$@Model.Price">
                                         <span class="highlight"></span>
-                                        <span class"></span>
+                                        <span class=""></span>
                                         <label class="labelG">Price</label>
                                     </div>
                                     <br />
@@ -51,7 +51,7 @@
                                     }
 
                                     <div class="group">
-                                        <input type="text" class="inputG2" required readonly value="@available">
+                                        <input type="text" class="inputG focus-in-expand " required readonly value="@available">
                                         <span class="highlight"></span>
                                         <span class=""></span>
                                         <label class="labelG">Available</label>
@@ -60,7 +60,7 @@
 
 
                                     <div class="group">
-                                        <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
+                                        <input asp-for="ProductTypes.Name" readonly class="inputG focus-in-expand " type="text" required>
                                         <span class="highlight"></span>
                                         <span class=""></span>
                                         <label class="labelG">Product Type</label>
@@ -77,7 +77,7 @@
                                         <br />*@
 
                                     <div class="group">
-                                        <input asp-for="SpecialTags.Name" readonly class="inputG2" type="text" required>
+                                        <input asp-for="SpecialTags.Name" readonly class="inputG focus-in-expand " type="text" required>
                                         <span class="highlight"></span>
                                         <span class="bar2"></span>
                                         <label class="labelG">Special Tag</label>
@@ -95,7 +95,7 @@
 
 
                                     <div class="group">
-                                        <input type="number" id="count" class="inputG" min="0" placeholder="Count" name="value" required value="1" asp-for="Count" />
+                                        <input type="number" id="count" class="inputG focus-in-expand " min="0" placeholder="Count" name="value" required value="1" asp-for="Count" />
 
 
                                         <span class=""></span>
@@ -119,7 +119,7 @@
                                     }
                                     else
                                     {
-                                        <button class="btn btn-primary" type="submit">Add To Card</button>
+                                        <button class="btn btn-primary jello-horizontal" type="submit">Add To Card</button>
                                     }
                                 }
 
@@ -210,7 +210,7 @@
                 @*<div class="col-1"></div>*@
                 <div class="col-12 col-md-6" style="text-align: center">
                     <br />
-                    <img src="@Model.Image" style="border: 1px solid gray;border-radius: 5px; width:100%" />
+                    <img src="@Model.Image" class="puff-in-center" style="border: 1px solid gray;border-radius: 5px; width:100%" />
                     <br /><br />
                     @if (Model.Available)
                     {
