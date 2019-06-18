@@ -52,7 +52,7 @@ namespace ChainStore.Areas.Identity.Pages.Account
                     pageHandler: null,
                     values: new { code },
                     protocol: Request.Scheme);
-
+                
                 await _emailSender.SendEmailAsync(
                     Input.Email,
                     "Reset Password",

@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br/>
-<h3 class="text-info text-center">Choose the ORM</h3>
+<h3 class="text-info text-center slide-in-blurred-top">Choose the ORM</h3>
 <form method="get">
-    <div class="row">
+    <div class="row ">
         <div class="col-0 col-md-4"></div>
-        <div class="col-12 col-md-4 border rounded border-info p-4">
+        <div class="col-12 col-md-4 border rounded border-info p-4 slide-in-blurred-top">
             <select class="form-control" name="number">
                 <option value="1">Using Queries</option>
                 <option value="0">Using EnityFrameWork</option>
@@ -21,10 +21,11 @@
 </form>
 @section Scripts
 {
-    @if (ViewBag.changed != null && ViewBag.changed)
+    @if (ViewBag.changed != null && ViewBag.changed ==  true)
     {
         <script>
-            swal("The ORM Changed!", "Now the you are using "+ @ViewBag.text);
+            var txt = ("Now you are using " + @ViewBag.text).toString();
+            swal("The ORM Changed!", txt);
         </script>
     }
 }

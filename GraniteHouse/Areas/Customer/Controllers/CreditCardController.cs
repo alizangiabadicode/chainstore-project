@@ -51,7 +51,7 @@ namespace Chain_Store.Areas.Customer.Controllers
             else
             {
                 CreditCard.Appointments = await _db.Appointments.FirstAsync(i => i.Id == appointmentId);
-                psd = _db.ProductsSelectedForAppointments.Where(e => e.AppointmentId == appointmentId).ToList();
+                psd = _db.ProductsSelectedForAppointments.Where(e => e.AppointmentId == appointmentId).Include(e=>e.Products).ToList();
             }
 
             double price = 0;

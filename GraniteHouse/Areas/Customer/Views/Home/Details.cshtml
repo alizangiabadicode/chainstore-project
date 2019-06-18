@@ -6,12 +6,12 @@
 }
 @inject IHttpContextAccessor HttpContextAccessor
 
-@if (ViewBag.error!= null && ViewBag.error)
+@*@if (ViewBag.error!= null && ViewBag.error)
 {
     <script>
         alert('There is not enough product in store');
     </script>
-}
+}*@
 <form method="post">
     @{ var temp = HttpContextAccessor.HttpContext.Session.Get<Dictionary<int, int>>("ls"); }
     <div class="row">
@@ -231,6 +231,19 @@
 </form>
 
 @section Scripts{
+    
+    @if (ViewBag.error != null && ViewBag.error)
+    {
+        <script>
+            swal({
+                title: "Error",
+                text: "There is not enough in the Stuck",
+                icon: "error",
+                button: "OK"
+            });
+        </script>
+
+    }
     <script>
         function givezerotocount() {
             var a = document.getElementById("#count");
