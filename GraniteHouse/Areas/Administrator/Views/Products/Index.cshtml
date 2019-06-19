@@ -38,3 +38,40 @@
         </tr>
     }
 </table>
+@section Scripts{
+    @if (ViewBag.edit != null && ViewBag.edit)
+    {
+        <script>
+            swal({
+                title: "Edited!",
+                text: "",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+    else if (ViewBag.delete != null && ViewBag.delete)
+    {
+        <script>
+            swal({
+                title: "Deleted!",
+                text: "",
+                icon: "error",
+                button: "OK",
+            });
+        </script>
+    }
+    else if (ViewBag.create != null && ViewBag.create)
+    {
+        <script>
+            swal({
+                title: "Created!",
+                text: "",
+                icon: "info",
+                button: "OK",
+            });
+        </script>
+
+    }
+
+}

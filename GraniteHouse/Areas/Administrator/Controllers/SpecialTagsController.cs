@@ -28,6 +28,20 @@ namespace ChainStore.Areas.Administrator.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+            if (Convert.ToInt32(TempData["edit"]) == 1)
+            {
+                ViewBag.edit = true;
+            }
+            else if (Convert.ToInt32(TempData["delete"]) == 1)
+            {
+                ViewBag.delete = true;
+            }
+            else if (Convert.ToInt32(TempData["create"]) == 1)
+            {
+                ViewBag.create = true;
+            }
+
             if (orm == 1)
             {
                 db = new Qdatabase();
@@ -61,7 +75,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                     _db.Add(st);
                     await _db.SaveChangesAsync();
                 }
-
+                TempData["create"] = 1;
                 return RedirectToAction(nameof(Index));
             }
 
@@ -104,7 +118,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                     _db.Update(st);
                     await _db.SaveChangesAsync();
                 }
-
+                TempData["edit"] = 1;
                 return RedirectToAction(nameof(Index));
             }
 
@@ -161,6 +175,8 @@ namespace ChainStore.Areas.Administrator.Controllers
                 _db.Remove(st);
                 await _db.SaveChangesAsync();
             }
+
+            TempData["delete"] = 1;
             return RedirectToAction("Index");
         }
     }

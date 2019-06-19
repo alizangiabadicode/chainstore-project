@@ -23,6 +23,19 @@ namespace ChainStore.Areas.Administrator.Controllers
         }
         public IActionResult Index()
         {
+            if (Convert.ToInt32(TempData["edit"]) == 1)
+            {
+                ViewBag.edit = true;
+            }
+            else if (Convert.ToInt32(TempData["delete"]) == 1)
+            {
+                ViewBag.delete = true;
+            }
+            else if (Convert.ToInt32(TempData["create"]) == 1)
+            {
+                ViewBag.create = true;
+            }
+
             return View(_db.ApplicationUsers.ToList());
         }
 
@@ -58,6 +71,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                 obj.Name = au.Name;
                 obj.PhoneNumber = au.PhoneNumber;
                 await _db.SaveChangesAsync();
+                TempData["edit"] = 1;
                 return RedirectToAction(nameof(Index));
             }
 
@@ -92,6 +106,8 @@ namespace ChainStore.Areas.Administrator.Controllers
             ApplicationUser au = await _db.ApplicationUsers.FirstAsync(e => e.Id == id);
             au.LockoutEnd=DateTime.Now.AddYears(1000);
             await _db.SaveChangesAsync();
+
+            TempData["delete"] = 1;
             return RedirectToAction(nameof(Index));
         }
     }

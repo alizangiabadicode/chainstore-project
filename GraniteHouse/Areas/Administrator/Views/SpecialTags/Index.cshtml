@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<br/>
+<br />
 <div class="row">
     <div class="col-6">
         <h2 class="text-info scale-up-center">
@@ -13,11 +13,11 @@
         <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Special Tag</a>
     </div>
 </div>
-<br/>
+<br />
 <div>
     <table class="table table-striped border">
         <tr class="table-info scale-up-center">
-            <th>@Html.DisplayNameFor(m=>m.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
             <th></th>
             <th></th>
         </tr>
@@ -28,9 +28,46 @@
                     @item.Name
                 </td>
                 <td>
-                    <partial name="_TableButtonPartial" model="@item.Id"/>
+                    <partial name="_TableButtonPartial" model="@item.Id" />
                 </td>
             </tr>
         }
     </table>
 </div>
+@section Scripts{
+    @if (ViewBag.edit != null && ViewBag.edit)
+    {
+        <script>
+            swal({
+                title: "Edited!",
+                text: "",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+    else if (ViewBag.delete != null && ViewBag.delete)
+    {
+        <script>
+            swal({
+                title: "Deleted!",
+                text: "",
+                icon: "error",
+                button: "OK",
+            });
+        </script>
+    }
+    else if (ViewBag.create != null && ViewBag.create)
+    {
+        <script>
+            swal({
+                title: "Created!",
+                text: "",
+                icon: "info",
+                button: "OK",
+            });
+        </script>
+
+    }
+
+}

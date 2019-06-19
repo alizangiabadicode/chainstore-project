@@ -44,10 +44,24 @@ namespace ChainStore.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (Convert.ToInt32(TempData["edit"]) == 1)
+            {
+                ViewBag.edit = true;
+            }
+            else if (Convert.ToInt32(TempData["delete"]) == 1)
+            {
+                ViewBag.delete = true;
+            }
+            else if (Convert.ToInt32(TempData["create"]) == 1)
+            {
+                ViewBag.create = true;
+            }
+
             List<Products> product;
             if (orm == 1)
             {
                 product = qdb.retProduct();
+                qdb.include_pt_st(product);
             }
             else
             {
@@ -135,6 +149,8 @@ namespace ChainStore.Controllers
             {
                 await _db.SaveChangesAsync();
             }
+
+            TempData["create"] = 1;
             return RedirectToAction(nameof(Index));
         }
 
@@ -196,7 +212,12 @@ namespace ChainStore.Controllers
                 }
                 else
                 {
-                    oldProduct = await _db.Products.FirstOrDefaultAsync(x => x.Id == ProductsVm.Products.Id);
+                    oldProduct = await _db.Products.FirstAsync(x => x.Id == ProductsVm.Products.Id);
+                }
+                
+                if(oldProduct == null)
+                {
+                    return NotFound();
                 }
 
                 var files = HttpContext.Request.Form.Files;
@@ -223,7 +244,7 @@ namespace ChainStore.Controllers
 
                 if (ProductsVm.Products.Image != null)
                 {
-                    oldProduct.Image = ProductsVm.Products.Image;
+                    oldProduct.Image = ProductsVm.Products.Image; 
                 }
 
                 oldProduct.Name = ProductsVm.Products.Name;
@@ -232,7 +253,6 @@ namespace ChainStore.Controllers
                 oldProduct.ProductTypeId = ProductsVm.Products.ProductTypeId;
                 oldProduct.Available = ProductsVm.Products.Available;
                 oldProduct.Count = ProductsVm.Products.Count;
-                //oldProduct.ShadeColor = ProductsVm.Products.ShadeColor;
 
                 if (orm == 1)
                 {
@@ -243,6 +263,7 @@ namespace ChainStore.Controllers
                     await _db.SaveChangesAsync();
                 }
 
+                TempData["edit"] = 1;
                 return RedirectToAction(nameof(Index));
             }
 
@@ -342,6 +363,7 @@ namespace ChainStore.Controllers
                     await _db.SaveChangesAsync();
                 }
 
+                TempData["delete"] = 1;
                 return RedirectToAction(nameof(Index));
             }
         }

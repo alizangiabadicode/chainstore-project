@@ -40,6 +40,18 @@ namespace ChainStore.Controllers
             {
                 ViewBag.congrats = true;
             }
+            if (TempData["orm"] != null)
+            {
+                int o = Convert.ToInt32(TempData["orm"]);
+                if (o == 1)
+                {
+                    ViewBag.orm = 1;
+                }
+                else
+                {
+                    ViewBag.orm = 0;
+                }
+            }
             bool tagg = true, typee = true;
             if (vm.tag == null)
                 tagg = false;

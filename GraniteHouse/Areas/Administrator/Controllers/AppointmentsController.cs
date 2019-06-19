@@ -32,6 +32,18 @@ namespace ChainStore.Areas.Administrator.Controllers
         public async Task<IActionResult> Index(string searchName = null, string searchEmail = null,
             string searchPhone = null, string searchDate = null)
         {
+            if (Convert.ToInt32(TempData["edit"]) == 1)
+            {
+                ViewBag.edit = true;
+            }
+            else if (Convert.ToInt32(TempData["delete"]) == 1)
+            {
+                ViewBag.delete = true;
+            }
+            else if (Convert.ToInt32(TempData["create"]) == 1)
+            {
+                ViewBag.create = true;
+            }
 
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -159,6 +171,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                 await _db.SaveChangesAsync();
             }
 
+            TempData["edit"] = 1;
             return RedirectToAction(nameof(Index));
         }
 
@@ -287,6 +300,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                 await _db.SaveChangesAsync();
             }
 
+            TempData["delete"] = 1;
             return RedirectToAction(nameof(Index));
         }
 

@@ -27,6 +27,8 @@ namespace Chain_Store.Areas.Administrator.Controllers
                 _db.SaveChanges();
                 ViewBag.changed = true;
                 ViewBag.text = number == 1 ? "Queries" : "EntityFramework";
+                TempData["orm"] = number;
+                return RedirectToAction(nameof(Index), "Home",new { @Area="Customer"});
             }
             return View();
         }

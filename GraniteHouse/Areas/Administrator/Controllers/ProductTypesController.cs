@@ -29,6 +29,18 @@ namespace ChainStore.Areas.Administrator.Controllers
 
         public IActionResult Index()
         {
+            if(Convert.ToInt32(TempData["edit"]) == 1)
+            {
+                ViewBag.edit = true;
+            }
+            else if(Convert.ToInt32(TempData["delete"]) == 1)
+            {
+                ViewBag.delete = true;
+            }
+            else if(Convert.ToInt32(TempData["create"]) == 1)
+            {
+                ViewBag.create = true;
+            }
           
             if (orm == 1)
             {
@@ -61,6 +73,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                 _db.Add(pt);
                 await _db.SaveChangesAsync();
                 }
+                TempData["create"] = 1;
                 return RedirectToAction(nameof(Index));
             }
 
@@ -112,6 +125,7 @@ namespace ChainStore.Areas.Administrator.Controllers
                     _db.Update(pt);
                     await _db.SaveChangesAsync();
                 }
+                TempData["edit"] = 1;
                 return RedirectToAction(nameof(Index));
             }
 
@@ -170,6 +184,8 @@ namespace ChainStore.Areas.Administrator.Controllers
                 _db.ProductTypes.Remove(pt);
                 await _db.SaveChangesAsync();
             }
+
+            TempData["delete"] = 1;
             return RedirectToAction(nameof(Index));
         }
     }

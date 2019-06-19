@@ -13,10 +13,10 @@
         <a class="btn btn-info scale-up-center" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i> &nbsp; New Admin User</a>
     </div>
 
-</div><br/>
+</div><br />
 <table class="table table-striped border">
     <tr class="table-info scale-up-center">
-        <th  style="text-align: center">@Html.DisplayNameFor(m => m.Name)</th>
+        <th style="text-align: center">@Html.DisplayNameFor(m => m.Name)</th>
         <th style="text-align: center">@Html.DisplayNameFor(m => m.PhoneNumber)</th>
         <th style="text-align: center">@Html.DisplayNameFor(m => m.Email)</th>
         <th style="text-align: center">Disabled</th>
@@ -37,7 +37,7 @@
             <td style="text-align: center" class="btn-group">
                 @if (i.LockoutEnd == null || i.LockoutEnd < DateTime.Now)
                 {
-                    <a class="btn btn-primary" asp-area="Administrator" asp-controller="AdminUsers" asp-action="Edit"asp-route-id="@i.Id">
+                    <a class="btn btn-primary" asp-area="Administrator" asp-controller="AdminUsers" asp-action="Edit" asp-route-id="@i.Id">
                         <i class="fas fa-user-edit"></i>
                     </a>
 
@@ -49,3 +49,38 @@
         </tr>
     }
 </table>
+@section Scripts{
+    @if (ViewBag.edit != null && ViewBag.edit)
+    {
+        <script>
+            swal({
+                title: "Edited!",
+                text: "",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+    else if (ViewBag.delete != null && ViewBag.delete)
+    {
+        <script>
+            swal({
+                title: "Deleted!",
+                text: "",
+                icon: "error",
+                button: "OK",
+            });
+        </script>
+    }
+    else if (ViewBag.create != null && ViewBag.create)
+    {
+        <script>
+            swal({
+                title: "Created!",
+                text: "",
+                icon: "info",
+                button: "OK",
+            });
+        </script>
+
+    }}

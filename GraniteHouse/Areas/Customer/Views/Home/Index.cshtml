@@ -110,6 +110,29 @@
         </script>
 
     }
+    @if (ViewBag.orm != null && Convert.ToInt32(ViewBag.orm) == 1)
+    {
+        <script>
+            swal({
+                title: "ORM Changed!",
+                text: "You are now using Queries!",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+    @if (ViewBag.orm != null && Convert.ToInt32(ViewBag.orm) == 0)
+    {
+        <script>
+            swal({
+                title: "ORM Changed!",
+                text: "You are now using EntityFramework!",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+
     <script>
         function fillTagInput(e) {
             var tag = document.getElementById("tag");
@@ -122,15 +145,15 @@
             type.value = e.innerText;
         }
 
-            //document.addEventListener('DOMContentLoaded', function () {
-            //    var tag = document.getElementById("tag");
-            //    document.getElementById('spantag').innerText = tag.innerText;
-            //    document.getElementById('toclear').innerText = '';
-            //});
-            //window.onload = function () {
-            //        var tag = document.getElementById("tag");
-            //        document.getElementById('spantag').innerText = tag.innerText;
-            //        document.getElementById('toclear').innerText = '';
-            //    };
+                    //document.addEventListener('DOMContentLoaded', function () {
+                    //    var tag = document.getElementById("tag");
+                    //    document.getElementById('spantag').innerText = tag.innerText;
+                    //    document.getElementById('toclear').innerText = '';
+                    //});
+                    //window.onload = function () {
+                    //        var tag = document.getElementById("tag");
+                    //        document.getElementById('spantag').innerText = tag.innerText;
+                    //        document.getElementById('toclear').innerText = '';
+                    //    };
     </script>
 }

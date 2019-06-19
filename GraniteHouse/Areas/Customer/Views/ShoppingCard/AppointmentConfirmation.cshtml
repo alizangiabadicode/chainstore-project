@@ -9,7 +9,7 @@
 </div>
 <br />
 <input hidden asp-for="Appointments.Id" />
-<partial model="@Model.Appointments"  name="AppointmentCustomerDetails" />
+<partial model="@Model.Appointments" name="AppointmentCustomerDetails" />
 <br />
 <partial model="@Model.Products" class="slide-in-right" name="AppointmentProductDetails" />
 <div class="row slide-in-left">
@@ -25,3 +25,29 @@
 </div>
 <br /><br /><br />
 
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var data = document.getElementById("datepicker").value;
+            //var t = document.getElementById("timepicker").value;
+
+            if (data.indexOf("T") > 0) {
+                data = data.split("T");
+            } else {
+                data = data.split(" ");
+            }
+            var time = data[1];
+
+            //var amPm = "";
+            //if (data[2] != undefined) {
+            //    amPm = data[2];
+            //}
+
+            //var amPm = data[2];
+            $("#datepicker").attr("value", data[0]);
+            //$('#timepicker').attr("value", data[1].substr(0, 5) + " " + amPm);
+        });
+    </script>
+
+}
