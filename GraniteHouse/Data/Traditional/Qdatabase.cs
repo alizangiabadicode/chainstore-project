@@ -453,7 +453,7 @@ namespace ChainStore.Data.Traditional
 
         }
 
-        public void inProduct(Products input)
+        public int inProduct(Products input)
         {
             SqlCommand cmd = new SqlCommand("inproduct", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -472,9 +472,15 @@ namespace ChainStore.Data.Traditional
             SqlParameter pmt7 = new SqlParameter("@count", SqlDbType.Int);
             pmt7.Value = input.Count;
             cmd.Parameters.Add(pmt1); cmd.Parameters.Add(pmt2); cmd.Parameters.Add(pmt3); cmd.Parameters.Add(pmt4); cmd.Parameters.Add(pmt5); cmd.Parameters.Add(pmt6); cmd.Parameters.Add(pmt7);
+            int i = 0;
             connection.Open();
-            cmd.ExecuteNonQuery();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                i = Convert.ToInt32(reader[0]);
+            }
             connection.Close();
+            return i;
         }
 
 

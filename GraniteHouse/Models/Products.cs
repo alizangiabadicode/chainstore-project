@@ -16,7 +16,7 @@ namespace ChainStore.Models
         public double Price { get; set; }
         public bool Available { get; set; }
         //public string ShadeColor { get; set; }
-        [Range(minimum:0,maximum:100)]
+        [Range(minimum:0,maximum:100000)]
         public int Count { get; set; }
         [Display(Name = "Product Type")]
         public int ProductTypeId { get; set; }

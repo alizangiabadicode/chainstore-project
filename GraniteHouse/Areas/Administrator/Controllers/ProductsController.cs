@@ -89,8 +89,9 @@ namespace ChainStore.Controllers
             Products obj = null;
             if (orm == 1)
             {
-                qdb.inProduct(ProductsVm.Products);
-                obj = qdb.retProduct(ProductsVm.Products);
+                obj = ProductsVm.Products;
+                obj.Id = qdb.inProduct(ProductsVm.Products);
+                //obj = qdb.retProduct(ProductsVm.Products);
             }
             else
             {
@@ -258,11 +259,13 @@ namespace ChainStore.Controllers
 
             if (orm == 1)
             {
-                ProductsVm.Products = qdb.retProduct((int) id);
+                ProductsVm.Products = qdb.retProduct((int)id);
+                List<Products> ls = new List<Products>(); ls.Add(ProductsVm.Products);
+                qdb.include_pt_st(ls);
             }
             else
             {
-                ProductsVm.Products = await _db.Products.FindAsync(id);
+                ProductsVm.Products = await _db.Products.Include(e => e.ProductTypes).Include(e => e.SpecialTags).FirstAsync(e => e.Id == (int)id);
             }
 
             if (ProductsVm.Products == null)
@@ -284,6 +287,8 @@ namespace ChainStore.Controllers
             if (orm == 1)
             {
                 ProductsVm.Products = qdb.retProduct((int) id);
+                List<Products> ls = new List<Products>();ls.Add(ProductsVm.Products);
+                qdb.include_pt_st(ls);
             }
             else
             {

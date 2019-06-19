@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <input hidden asp-for="Products.Id"/>
     <div class="row">
 
@@ -22,14 +22,14 @@
 
 
                                     <div class="group">
-                                        <input asp-for="Products.Name"  class="inputG slide-in-bck-center" type="text" required>
+                                        <input asp-for="Products.Name" class="inputG slide-in-bck-center" type="text" required>
                                         <span class=""></span>
                                         <span class="bar"></span>
                                         <label class="labelG slide-in-bck-center">Name</label>
                                     </div>
                                     <br />
                                     <div class="group">
-                                        <input asp-for="Products.Price"  class="inputG slide-in-bck-center" type="tel" required value="@Model.Products.Price" />
+                                        <input asp-for="Products.Price" class="inputG slide-in-bck-center" type="tel" required value="@Model.Products.Price" />
                                         <span class=""></span>
                                         <span class="bar"></span>
                                         <label class="labelG slide-in-bck-center">Price</label>
@@ -41,49 +41,49 @@
                                     }
 
                                     <div class="group">
-                                        <input type="checkbox" class="inputG slide-in-bck-center" asp-for="Products.Available"  >
+                                        <input type="checkbox" class="inputG slide-in-bck-center" asp-for="Products.Available">
                                         <span class=""></span>
                                         <span class=""></span>
                                         <label class="labelG slide-in-bck-center">Available</label>
                                     </div>
                                     <br />
-
+                                    <input asp-for="Products.Image" class="form-control slide-in-bck-center" style="width: 100%" type="file">
 
                                     <br />
                                     <select class="form-control slide-in-bck-center" style="width: 100%" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
                                     <br />
                                     <select class="form-control slide-in-bck-center" style="width: 100%" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
 
-                                    <br/>
+                                    <br />
                                     @*<div class="group">
-                                            <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
-                                            <span class="highlight"></span>
-                                            <span class="bar2"></span>
-                                            <label class="labelG2">Special Tag</label>
-                                        </div>
-                                        <br />*@
+            <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar2"></span>
+            <label class="labelG2">Special Tag</label>
+        </div>
+        <br />*@
 
                                     @*<div class="group">
-                                        <input asp-for="Products.SpecialTags.Name" class="inputG" type="text" required>
-                                        <span class=""></span>
-                                        <span class="bar"></span>
-                                        <label class="labelG">Special Tag</label>
-                                    </div>
-                                    <br />*@
+            <input asp-for="Products.SpecialTags.Name" class="inputG" type="text" required>
+            <span class=""></span>
+            <span class="bar"></span>
+            <label class="labelG">Special Tag</label>
+        </div>
+        <br />*@
 
 
                                     @*<div class="group">
-                                            <input type="number" asp-for="SpecialTags.Name" readonly class="inputG2" required>
-                                            <span class="highlight"></span>
-                                            <span class="bar2"></span>
-                                            <label class="labelG2">cccc</label>
-                                        </div>
-                                        <br />*@
+            <input type="number" asp-for="SpecialTags.Name" readonly class="inputG2" required>
+            <span class="highlight"></span>
+            <span class="bar2"></span>
+            <label class="labelG2">cccc</label>
+        </div>
+        <br />*@
 
 
 
                                     <div class="group">
-                                        <input type="number"  id="count" class="inputG slide-in-bck-center" min="0" placeholder="Count" required value="@Model.Products.Count" asp-for="Products.Count" />
+                                        <input type="number" id="count" class="inputG slide-in-bck-center" min="0" placeholder="Count" required value="@Model.Products.Count" asp-for="Products.Count" />
 
 
                                         <span class=""></span>
