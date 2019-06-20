@@ -116,6 +116,7 @@
                                     if (temp != null && temp.ContainsKey(Model.Id))
                                     {
                                         <button type="submit" class="btn btn-danger" asp-action="Remove" asp-route-id="@Model.Id">Remove From Card</button>
+                                        <button type ="submit" asp-action="EditTheCount"  asp-route-id="@Model.Id" class="btn btn-info">Edit</button>
                                     }
                                     else
                                     {
@@ -210,7 +211,7 @@
                 @*<div class="col-1"></div>*@
                 <div class="col-12 col-md-6" style="text-align: center">
                     <br />
-                    <img src="@Model.Image" class="puff-in-center" style="border: 1px solid gray;border-radius: 5px; width:100%" />
+                    <img src="@Model.Image" class="puff-in-center" style="border-radius: 5px; width:100%" />
                     <br /><br />
                     @if (Model.Available)
                     {

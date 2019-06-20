@@ -7,7 +7,7 @@
 
 
 <form method="get">
-    <input name="tag" id="tag" hidden type="text" />
+    <input name="tag"id="tag" value="@Model.tag" hidden type="text" />
     <input name="type" id="type" hidden type="text" />
     <div class="container p-1" style="border-radius:10px">
         <div class="row">
@@ -18,7 +18,7 @@
                         <label id="img_category_label" class="field labelselect" for="img_category">
                             <span class="">Search by Tag</span>
                             <div id="img_category" class="psuedo_select" name="img_category">
-                                <span id="spantag" class="selected spanselect"></span>
+                                <span id="spanSpecialtag" class="selected spanselect"></span>
                                 <span class="selected spanselect" id="toclear"></span>
                                 <ul id="img_category_options" class="options ul">
                                     @for (int i = 0; i < Model.SpecialTags.Count(); i++)
@@ -72,7 +72,7 @@
 <div class="card-columns ml-1 justify-content-center text-center">
     @foreach (var item in Model.Products)
     {
-        <div class="card mb-1 puff-in-center" style="min-width:200px;max-width:400px;border-color:transparent">
+        <div  class="card mb-1 puff-in-center" style="min-width:200px;max-width:400px;border-color:transparent;">
             <img class="card-img-top shadow-drop-2-center" style="height:80%; width:100%" ; src="@item.Image" alt="Card-Image" />
             <div class="card-body" style="">
                 <p class="card-title focus-in-expand text-info">@item.Name</p>
@@ -98,6 +98,19 @@
         <option value="Makeup">Makeup</option>
     </select>*@
 @section Scripts{
+    <script>
+        $(document).ready(function () {
+            console.log("enterd the special tag span fill");
+            var taginput = document.getElementById("tag");
+            var spanspecialtag = document.getElementById("spanSpecialtag");
+            var toclear = document.getElementById("toclear");
+            
+            spanspecialtag.innerText = taginput.value;
+            toclear.innerText = taginput.value;
+
+           
+        });
+    </script>
     @if (ViewBag.congrats != null && ViewBag.congrats)
     {
         <script>

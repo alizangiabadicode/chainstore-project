@@ -35,7 +35,7 @@ namespace ChainStore.Data.Traditional
                     CustomerName = read[2].ToString(),
                     CustomerNumber = read[3].ToString(),
                     CustomerEmail = read[4].ToString(),
-                    IsConfirmed = Convert.ToInt32(read[5]) == 1 ? true : false
+                    IsConfirmed = false
                 });
             }
             connection.Close();
@@ -208,7 +208,7 @@ namespace ChainStore.Data.Traditional
                     CustomerName = read[2].ToString(),
                     CustomerNumber = read[3].ToString(),
                     CustomerEmail = read[4].ToString(),
-                    IsConfirmed = Convert.ToInt32(read[5]) == 1 ? true : false
+                    IsConfirmed = true
                 });
             }
             connection.Close();

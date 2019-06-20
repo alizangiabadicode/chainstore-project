@@ -28,11 +28,47 @@ namespace ChainStore.Controllers
             orm = _db.WitchOrm.First().i;
             qdb = new Qdatabase();
         }
-
         //[BindProperty]
         //public bool Error { get; set; }
         public IActionResult Index(ProductViewModelForList vm)
         {
+            if(vm.tag == "All")
+            {
+                vm.tag = null;
+                TempData["tag"] = null;
+            }
+            if(vm.type == "All")
+            {
+                vm.type = null;
+                TempData["type"] = null;
+            }
+            if (TempData["tag"] != null)
+            {
+                vm.tag = TempData["tag"].ToString();
+                TempData.Keep();
+            }
+            else
+            {
+                if (vm.tag != null)
+                {
+                    TempData["tag"] = vm.tag;
+                    TempData.Keep();
+                }
+            }
+            if (TempData["type"] != null)
+            {
+                vm.type = TempData["type"].ToString();
+                TempData.Keep();
+            }
+            else
+            {
+                if (vm.type != null)
+                {
+                    TempData["type"] = vm.type;
+                    TempData.Keep();
+                }
+            }
+
             //ProductViewModelForList vm = new ProductViewModelForList();
             //vm.tag = tag;
             //vm.type = type;
@@ -79,11 +115,50 @@ namespace ChainStore.Controllers
                 temp = temp.Where(e => e.ProductTypes.Name == vm.type).ToList();
             }
 
+
+
             vm.Products = temp;
             vm.SpecialTags = _db.SpecialTags.ToList();
             vm.ProductTypes = _db.ProductTypes.ToList();
-
+            
             return View(vm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditTheCount(int id,int value)
+        {
+            Products p = null;
+            if (orm == 1)
+            {
+                p = qdb.retProduct(id);
+            }
+            else
+            {
+                p = await _db.Products.FirstAsync(i => i.Id == id);
+            }
+
+            if (p.Count < value)
+            {
+                Products product = null;
+                if (orm == 1)
+                {
+                    product = qdb.retProduct(id);
+                    List<Products> ls = new List<Products>(); ls.Add(product);
+                    qdb.include_pt_st(ls);
+                }
+                else
+                {
+                    product = await _db.Products.Include(m => m.ProductTypes).Include(m => m.SpecialTags)
+                        .FirstOrDefaultAsync(m => m.Id == id);
+                }
+
+                ViewBag.error = true;
+                return View("Details", product);
+            }
+            Dictionary<int, int> lst = HttpContext.Session.Get<Dictionary<int, int>>("ls") ?? new Dictionary<int, int>();
+            lst[id] = value;
+            HttpContext.Session.Set<Dictionary<int, int>>("ls", lst);
+            TempData.Keep();
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Details(int id)
@@ -100,7 +175,7 @@ namespace ChainStore.Controllers
                 product = await _db.Products.Include(m => m.ProductTypes).Include(m => m.SpecialTags)
                     .FirstOrDefaultAsync(m => m.Id == id);
             }
-            
+            TempData.Keep();
             return View(product);
         }
         //[Authorize(Roles = SD.AdminEndUser + ","+ SD.SuperAdminEndUser)]
@@ -141,6 +216,7 @@ namespace ChainStore.Controllers
             lst.Add(id, value);
             //lst[id] = value;
             HttpContext.Session.Set<Dictionary<int,int>>("ls", lst);
+            TempData.Keep();
             return RedirectToAction(nameof(Index), "Home", new { area = "Customer" });
         }
 
@@ -155,6 +231,7 @@ namespace ChainStore.Controllers
                 }
             }
             HttpContext.Session.Set("ls", temp);
+            TempData.Keep();
             return RedirectToAction(nameof(Index));
         }
     }

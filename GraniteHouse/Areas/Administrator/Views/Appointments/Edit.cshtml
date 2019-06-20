@@ -7,6 +7,7 @@
 }<br />
 <h2 class="text-info slide-in-top">Edit</h2>
 <form method="post">
+    <input hidden asp-for="Appointments.IsConfirmed"/>
     <div class="p-4 border rounded slide-in-top">
         <div class="row">
             <div class="col-6" style="border-right: 1px solid gray">
@@ -56,14 +57,14 @@
                     <span asp-validation-for="Appointments.AppointmentTime" class="text-danger"></span>
                 </div>
                
-                <div class="row form-group">
+                @*<div class="row form-group">
                     <div class="col-4">
                         <label asp-for="Appointments.IsConfirmed"></label>
                     </div>
                     <div class="col-8">
                         <input class="form-control" asp-for="Appointments.IsConfirmed" />
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="col-6">
                 <table class="table table-striped" style="width: 100%">
