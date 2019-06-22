@@ -12,8 +12,8 @@
         <input name="tag" id="tag" hidden type="text" />
         <input name="type" id="type" hidden type="text" />
 
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-6">
             <h2 class="text-info ">Details</h2>
             <div class="p-4 border rounded row">
                 <div class="col-2"></div>
@@ -75,9 +75,9 @@
 
         </div>*@
                             <br />
-                            <select class="form-control slide-in-elliptic-top-fwd" style="width: 70%" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
+                            <select class="form-control slide-in-elliptic-top-fwd" style="" asp-for="Products.ProductTypeId" asp-items="Model.ProductTypes.ToSelectList(18)"></select>
                             <br />
-                            <select class="form-control slide-in-elliptic-top-fwd" style="width: 70%" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
+                            <select class="form-control slide-in-elliptic-top-fwd" style="" asp-for="Products.SpecialTagId" asp-items="Model.SpecialTags.ToSelectList(18)"></select>
 
                             @*<div class="group">
             <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
@@ -108,7 +108,7 @@
         </div>*@
                             <br />
 
-                            <input asp-for="Products.Image" class="form-control slide-in-elliptic-top-fwd" style="width: 70%" type="file">
+                            <input asp-for="Products.Image" class="form-control slide-in-elliptic-top-fwd" style="" type="file">
 
                             <br />
 
@@ -161,7 +161,7 @@
                 </div>
 
             </div>*@
-
+       <div class="col-3"></div>
     </div>
     @*</div>
         <div class="col-2"></div>

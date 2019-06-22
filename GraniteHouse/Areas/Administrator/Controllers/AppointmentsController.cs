@@ -219,7 +219,8 @@ namespace ChainStore.Areas.Administrator.Controllers
 
             foreach (Products i in products)
             {
-                i.Count = _db.ProductsSelectedForAppointments.First(e => e.ProductId == i.Id).Count;
+                i.Count = psd.First(e => e.ProductId == i.Id).Count;
+                i.Price = i.Price * i.Count;
             }
 
             var applicationUsers = (from i in _db.ApplicationUsers select i);
