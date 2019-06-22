@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChainStore.Data;
+using ChainStore.Models;
 using ChainStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,8 @@ namespace Chain_Store.Areas.Administrator.Controllers
         public IActionResult Index(int number = -1)
 
         {
+            orm o = new orm();
+            o.i = _db.WitchOrm.First().i;
             if (number != -1)
             {
                 _db.WitchOrm.First().i = number;
@@ -30,7 +33,7 @@ namespace Chain_Store.Areas.Administrator.Controllers
                 TempData["orm"] = number;
                 return RedirectToAction(nameof(Index), "Home",new { @Area="Customer"});
             }
-            return View();
+            return View(o);
         }
     }
 }

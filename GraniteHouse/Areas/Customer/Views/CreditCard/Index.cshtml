@@ -98,10 +98,12 @@
                     <div class="group">
                         @*<input asp-for="AccountSerialNum" data-inputmask="'mask': '9999 9999 9999 9999'" id="serialnum" class="inputG" type="text" required>*@
                         <input id="cc" type="tel" name="ccnumber" placeholder="XXXX XXXX XXXX XXXX" pattern="\d{4} \d{4} \d{4} \d{4}" class="inputG masked" title="16-digit number">
-                        <input id="serialnum" hidden asp-for="AccountSerialNum"/>
+                        <input id="serialnum" hidden asp-for="AccountSerialNum" />
                         <span class=""></span>
                         <span class="bar"></span>
                         <label class="labelG">Account Serial Number</label>
+                        <span class="text-danger" asp-validation-for="AccountSerialNum "></span>
+
                     </div>
                 </div>
             </div>
@@ -113,6 +115,8 @@
                         <span class=""></span>
                         <span class="bar"></span>
                         <label class="labelG">Pin</label>
+                        <span class="text-danger" asp-validation-for="SalePrice "></span>
+
                     </div>
                 </div>
             </div>
@@ -124,6 +128,8 @@
                         <span class=""></span>
                         <span class="bar"></span>
                         <label class="labelG">Card Expiration Date</label>
+                        <span class="text-danger" asp-validation-for="CardExpirationDate "></span>
+
                     </div>
                 </div>
             </div>
@@ -135,7 +141,7 @@
                         <input value="$@Model.SalePrice" style="color:red" readonly  class="inputG" type="text">
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">$</label>
+                        <label class="labelG">Money To Pay</label>
                     </div>
                     <span class="text-danger" asp-validation-for="SalePrice "></span>
                 </div>

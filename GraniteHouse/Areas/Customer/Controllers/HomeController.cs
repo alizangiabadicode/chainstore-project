@@ -75,6 +75,7 @@ namespace ChainStore.Controllers
             if (TempData["congrats"] != null && Convert.ToInt32(TempData["congrats"]) == 1)
             {
                 ViewBag.congrats = true;
+                TempData["congrats"] = null;
             }
             if (TempData["orm"] != null)
             {

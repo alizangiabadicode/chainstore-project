@@ -69,12 +69,12 @@
 
 
                                     @*<div class="group">
-                                            <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
-                                            <span class="highlight"></span>
-                                            <span class="bar2"></span>
-                                            <label class="labelG2">Special Tag</label>
-                                        </div>
-                                        <br />*@
+            <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar2"></span>
+            <label class="labelG2">Special Tag</label>
+        </div>
+        <br />*@
 
                                     <div class="group">
                                         <input asp-for="SpecialTags.Name" readonly class="inputG focus-in-expand " type="text" required>
@@ -86,24 +86,38 @@
 
 
                                     @*<div class="group">
-                                            <input type="number" asp-for="SpecialTags.Name" readonly class="inputG2" required>
-                                            <span class="highlight"></span>
-                                            <span class="bar2"></span>
-                                            <label class="labelG2">cccc</label>
+            <input type="number" asp-for="SpecialTags.Name" readonly class="inputG2" required>
+            <span class="highlight"></span>
+            <span class="bar2"></span>
+            <label class="labelG2">cccc</label>
+        </div>
+        <br />*@
+                                    @if (Model.Available)
+                                    {
+                                        if (temp != null && temp.ContainsKey(Model.Id))
+                                        {
+                                        <div class="group">
+                                            <input type="number" id="count" class="inputG focus-in-expand " min="0" placeholder="Count" value="@temp[Model.Id]" name="value" required asp-for="Count" />
+
+
+                                            <span class=""></span>
+                                            <span class="bar"></span>
+                                            <label class="labelG">Count</label>
                                         </div>
-                                        <br />*@
+                                        }
+                                        else
+                                        {
+                                        <div class="group">
+                                            <input type="number" id="count" class="inputG focus-in-expand " min="0" placeholder="Count" value="1" name="value" required asp-for="Count" />
 
 
-                                    <div class="group">
-                                        <input type="number" id="count" class="inputG focus-in-expand " min="0" placeholder="Count" name="value" required value="1" asp-for="Count" />
-
-
-                                        <span class=""></span>
-                                        <span class="bar"></span>
-                                        <label class="labelG">Count</label>
-                                    </div>
+                                            <span class=""></span>
+                                            <span class="bar"></span>
+                                            <label class="labelG">Count</label>
+                                        </div>
+                                        }
                                     <br />
-
+                                    }
 
                                 </div>
 

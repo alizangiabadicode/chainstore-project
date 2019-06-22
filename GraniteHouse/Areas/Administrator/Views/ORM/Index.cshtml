@@ -1,4 +1,4 @@
-﻿
+﻿@model orm
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,12 +6,23 @@
 <br/>
 <h3 class="text-info text-center slide-in-blurred-top">Choose the ORM</h3>
 <form method="get">
+    @{ 
+        bool b = Model.i == 1 ? true : false;
+    }
     <div class="row ">
         <div class="col-0 col-md-4"></div>
         <div class="col-12 col-md-4 border rounded border-info p-4 slide-in-blurred-top">
             <select class="form-control" name="number">
-                <option value="1">Using Queries</option>
-                <option value="0">Using EnityFrameWork</option>
+                @if (b)
+                {
+                    <option selected="selected" value="1">Using Queries</option>
+                    <option value="0">Using EnityFrameWork</option>
+                }
+                else
+                {
+                    <option value="1">Using Queries</option>
+                    <option selected="selected" value="0">Using EnityFrameWork</option>
+                }
             </select>
             <br/>
             <button class="btn btn-outline-primary" type="submit">Enter</button>
