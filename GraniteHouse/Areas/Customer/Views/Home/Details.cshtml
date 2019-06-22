@@ -97,7 +97,7 @@
                                         if (temp != null && temp.ContainsKey(Model.Id))
                                         {
                                         <div class="group">
-                                            <input type="number" id="count" class="inputG focus-in-expand " min="0" placeholder="Count" value="@temp[Model.Id]" name="value" required asp-for="Count" />
+                                            <input type="number" id="count" class="inputG focus-in-expand " min="1" placeholder="Count" value="@temp[Model.Id]" name="value" required asp-for="Count" />
 
 
                                             <span class=""></span>
@@ -108,7 +108,7 @@
                                         else
                                         {
                                         <div class="group">
-                                            <input type="number" id="count" class="inputG focus-in-expand " min="0" placeholder="Count" value="1" name="value" required asp-for="Count" />
+                                            <input type="number" id="count" class="inputG focus-in-expand " min="1" placeholder="Count" value="1" name="value" required asp-for="Count" />
 
 
                                             <span class=""></span>
