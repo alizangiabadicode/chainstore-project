@@ -59,7 +59,7 @@ namespace ChainStore.Areas.Administrator.Controllers
             }
             else
             {
-                appointmentVm.Appointments = await _db.Appointments.ToListAsync();
+                appointmentVm.Appointments = await _db.Appointments.Where(e=>e.IsConfirmed == false).ToListAsync();
             }
 
             if (searchName != null)
