@@ -32,7 +32,7 @@ namespace ChainStore.Controllers
         {
             qdb = new Qdatabase();
             _db = db;
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
             _hostingEnvironment = hostingEnvironment;
             ProductsVm = new ProductsViewModel()
             {

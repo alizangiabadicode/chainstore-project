@@ -1,11 +1,11 @@
 ﻿@model CreditCard
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "پرداخت";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br/>
 <h2 class="text-info text-center slide-in-top">
-    Payment Page
+    درگاه پرداخت
 </h2>
 <br/>
 <form method="post">
@@ -19,7 +19,7 @@
         <div class="col-lg-4 col-12 border border-secondary rounded pt-2 text-center slide-in-left " >
 
             <h6 class="text-info">
-                Customer Info
+                اطلاعات مشتری
             </h6><br/>
 
             <div class="bodyG">
@@ -28,7 +28,7 @@
                         <input asp-for="Appointments.CustomerName"  readonly class="inputG" type="text" required>
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">Customer Name</label>
+                        <label class="labelG d-block text-center w-100">نام مشتری</label>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         <input asp-for="Appointments.CustomerEmail" readonly class="inputG" type="text" required>
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">Customer Email</label>
+                        <label class="labelG d-block text-center w-100">ایمیل مشتری</label>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <input asp-for="Appointments.CustomerNumber" readonly class="inputG" type="text" required>
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">Customer Number</label>
+                        <label class="labelG d-block text-center w-100">شماره تماس مشتری</label>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                         <input readonly id="timepicker" class="inputG" type="text" required>
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">Appointment Time</label>
+                        <label class="labelG d-block text-center w-100">تاریخ تحویل</label>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         <input asp-for="Appointments.AppointmentDate" readonly id="datepicker" class="inputG" type="text" required>
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">Appointment Date</label>
+                        <label class="labelG d-block text-center w-100">روز تحویل</label>
                     </div>
                 </div>
             </div>
@@ -90,18 +90,18 @@
         <div class="col-lg-5 col-12 border border-secondary rounded pt-2 text-center justify-content-center slide-in-right">
 
             <h6 class="text-info">
-                Enter Account Information
+                اطلاعات کارت را وارد کنید
             </h6><br/>
 
             <div class="bodyG">
                 <div class="container">
                     <div class="group">
                         @*<input asp-for="AccountSerialNum" data-inputmask="'mask': '9999 9999 9999 9999'" id="serialnum" class="inputG" type="text" required>*@
-                        <input id="cc" type="tel" name="ccnumber" placeholder="XXXX XXXX XXXX XXXX" pattern="\d{4} \d{4} \d{4} \d{4}" class="inputG masked" title="16-digit number">
+                        <input id="cc" type="tel" name="ccnumber" placeholder="XXXX XXXX XXXX XXXX" pattern="\d{4} \d{4} \d{4} \d{4}" class="inputG masked w-100" title="16-digit number">
                         <input id="serialnum" hidden asp-for="AccountSerialNum" />
                         <span class=""></span>
                         <span class="bar"></span>
-                        <label class="labelG">Account Serial Number</label>
+                        <label class="labelG d-block text-center w-100">شماره کارت</label>
                         <span class="text-danger" asp-validation-for="AccountSerialNum "></span>
 
                     </div>
@@ -111,10 +111,10 @@
             <div class="bodyG">
                 <div class="container">
                     <div class="group">
-                        <input asp-for="Pin" style="font-family: monospace;" class="inputG" type="text" required>
+                        <input asp-for="Pin" style="font-family: monospace;" class="inputG w-100" type="text" required>
                         <span class=""></span>
                         <span class="bar"></span>
-                        <label class="labelG">Pin</label>
+                        <label class="labelG d-block text-center w-100">رمز کارت</label>
                         <span class="text-danger" asp-validation-for="SalePrice "></span>
 
                     </div>
@@ -124,10 +124,10 @@
             <div class="bodyG">
                 <div class="container">
                     <div class="group">
-                        <input asp-for="CardExpirationDate" id="datepicker1" class="inputG" value=" " type="text" required>
+                        <input asp-for="CardExpirationDate" id="datepicker1" class="inputG w-100" value=" " type="text" required>
                         <span class=""></span>
                         <span class="bar"></span>
-                        <label class="labelG">Card Expiration Date</label>
+                        <label class="labelG d-block text-center w-100">تاریخ انقاضا کارت</label>
                         <span class="text-danger" asp-validation-for="CardExpirationDate "></span>
 
                     </div>
@@ -138,10 +138,10 @@
             <div class="bodyG">
                 <div class="container">
                     <div class="group">
-                        <input value="$@Model.SalePrice" style="color:red" readonly  class="inputG" type="text">
+                        <input value="$@Model.SalePrice" style="color:red" readonly  class="inputG w-100" type="text">
                         <span class="highlight"></span>
                         <span class=""></span>
-                        <label class="labelG">Money To Pay</label>
+                        <label class="labelG d-block text-center w-100">مبلغ</label>
                     </div>
                     <span class="text-danger" asp-validation-for="SalePrice "></span>
                 </div>

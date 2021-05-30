@@ -26,7 +26,7 @@ namespace Chain_Store.Areas.Customer.Controllers
         {
             _db = db;
             CreditCard = new CreditCard();
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
             qdb = new Qdatabase();
         }
         public async Task<IActionResult> Index(int appointmentId)

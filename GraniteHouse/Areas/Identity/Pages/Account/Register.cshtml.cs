@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ChainStore.Areas.Identity.Pages.Account
 {
-    [Authorize(Roles = SD.SuperAdminEndUser)]
+    // [Authorize(Roles = SD.SuperAdminEndUser)]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;

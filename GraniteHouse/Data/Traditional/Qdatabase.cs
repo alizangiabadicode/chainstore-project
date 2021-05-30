@@ -15,8 +15,8 @@ namespace ChainStore.Data.Traditional
         private SqlConnection connection;
         
         public Qdatabase()
-        {
-            connection = new SqlConnection("data source = DESKTOP-GO2FS9V; initial catalog = ChainStore; integrated security = true");
+        {// /Server=localhost;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true
+            connection = new SqlConnection("data source = localhost; initial catalog = master; integrated security = true");
         }
 
         public List<Appointments> retAppointment()

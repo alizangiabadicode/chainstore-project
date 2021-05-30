@@ -11,7 +11,7 @@
                 <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User).Split("@")[0]</a>
             </li>
             <li class="nav-item">
-                <button type="submit" class="btn btn-link navbar-btn text-light navbar-link">Logout</button>
+                <button type="submit" class="btn btn-link navbar-btn text-light navbar-link">خروج</button>
             </li>
         </ul>
     </form>
@@ -19,7 +19,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        @*<li class="nav-item"><a  class="nav-link"asp-area="Identity" asp-page="/Account/Register">Register</a></li>*@
-        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        @*<li class="nav-item"><a  class="nav-link"asp-area="Identity" asp-page="/Account/Register">ثبت نام</a></li>*@
+        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">ورود</a></li>
     </ul>
 }

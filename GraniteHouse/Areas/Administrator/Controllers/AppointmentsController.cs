@@ -26,7 +26,7 @@ namespace ChainStore.Areas.Administrator.Controllers
         {
             qdb = new Qdatabase();
             _db = db;
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
         }
 
         public async Task<IActionResult> Index(string searchName = null, string searchEmail = null,

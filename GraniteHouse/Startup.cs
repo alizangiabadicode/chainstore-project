@@ -30,8 +30,11 @@ namespace ChainStore
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                // options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                 options.CheckConsentNeeded = context => false;
+  options.MinimumSameSitePolicy = SameSiteMode.None;
+                
             });
             //DI of ApplicationDbContext
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -84,7 +87,7 @@ namespace ChainStore
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();

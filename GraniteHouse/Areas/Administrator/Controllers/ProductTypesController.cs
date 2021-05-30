@@ -24,7 +24,7 @@ namespace ChainStore.Areas.Administrator.Controllers
         {
             _db = db;
             qdb = new Qdatabase();
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
         }
 
         public IActionResult Index()

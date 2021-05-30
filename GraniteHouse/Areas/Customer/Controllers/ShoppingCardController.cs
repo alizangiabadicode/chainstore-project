@@ -31,7 +31,7 @@ namespace ChainStore.Areas.Customer.Controllers
             {
                 Products = new List<Products>()
             };
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
             qdb = new Qdatabase();
         }
         public IActionResult Index()
@@ -62,7 +62,9 @@ namespace ChainStore.Areas.Customer.Controllers
                     {
                         Products p = _db.Products.Include(e => e.ProductTypes).Include(e => e.SpecialTags)
                             .FirstOrDefault(e => e.Id == i);
-                        p.Price = lst[i] * p.Price;
+                        if (p != null) {
+                            p.Price = lst[i]* p.Price;
+                        }
                         ShoppingCardvm.Products.Add(p);
                     }
                 }

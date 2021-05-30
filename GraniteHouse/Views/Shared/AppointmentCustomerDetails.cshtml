@@ -2,19 +2,19 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<h4 class="text-success slide-in-right">Appointment Success</h4>
+<h4 class="text-success slide-in-right"></h4>
 <div class="container p-4 border rounded " style="background-color: aliceblue">
 
     <div class="row form-group slide-in-right">
         <div class="col-lg-2 col-md-2 col-4">
-            <label asp-for="CustomerName"></label>
+            <label asp-for="CustomerName">نام مشتری</label>
         </div>
         <div class="col-lg-3 col-md-3 col-8">
             <input asp-for="CustomerName" class="form-control" readonly="readonly" />
         </div>
         <div class="col-lg-2 col-md-2 col-12"></div>
         <div class="col-lg-2 col-md-2 col-4">
-            <label asp-for="CustomerEmail"></label>
+            <label asp-for="CustomerEmail">اییمل مشتری</label>
         </div>
         <div class="col-lg-3 col-md-3 col-8">
             <input asp-for="CustomerEmail" class="form-control" readonly="readonly" />
@@ -23,14 +23,14 @@
     <div class="row slide-in-right">
 
         <div class="col-lg-2 col-md-2 col-4">
-            <label asp-for="CustomerNumber"></label>
+            <label asp-for="CustomerNumber">شماره تماس مشتری</label>
         </div>
         <div class="col-lg-3 col-md-3 col-8">
             <input asp-for="CustomerNumber" class="form-control" readonly="readonly" />
         </div>
         <div class="col-lg-2 col-md-2 col-12"></div>
         <div class="col-lg-2 col-md-2 col-4">
-            <label asp-for="AppointmentDate"></label>
+            <label asp-for="AppointmentDate">تاریخ تحویل</label>
         </div>
         <div class="col-lg-3 col-md-3 col-8">
             <input asp-for="AppointmentDate" id="datepicker" class="form-control" readonly="readonly" />

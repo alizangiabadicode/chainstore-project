@@ -3,10 +3,9 @@
     ViewData["Title"] = "AppointmentConfirmation";
 }
 @*<input hidden asp-for="Appointments.Id"/>*@
-<h2 class="text-info slide-in-top">Appointment Confirmation</h2>
-<div class="slide-in-top">
-    Your appointment has been scheduled. one of out awesome sales is is going to be done shortly. Please feel free to contact us any time you had any questions.
-</div>
+<h2 class="text-info slide-in-top">تایید سفارش</h2>
+<div class="slide-in-top text-center">
+لطفا در صورت اطمینان بر روی گزینه پرداخت کلیک کنید</div>
 <br />
 <input hidden asp-for="Appointments.Id" />
 <partial model="@Model.Appointments" name="AppointmentCustomerDetails" />
@@ -17,8 +16,8 @@
     </div>
     <div class="col-6 text-center">
 
-        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-danger">Stop The Sale</a>
-        <a asp-area="Customer" asp-controller="CreditCard" asp-action="Index" asp-route-appointmentId="@Model.Appointments.Id" class="btn btn-primary">Complete the Sale</a>
+        <a asp-area="Customer" asp-controller="CreditCard" asp-action="Index" asp-route-appointmentId="@Model.Appointments.Id" class="btn btn-primary">پرداخت انلاین</a>
+        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-danger">انصراف از سفارش</a>
     </div>
     <div class="col-3 text-right">
     </div>

@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Http
 @model Products
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "جزئیات محصول";
 }
 @inject IHttpContextAccessor HttpContextAccessor
 
@@ -32,29 +32,29 @@
 
 
                                     <div class="group">
-                                        <input asp-for="Name" readonly class="inputG focus-in-expand " type="text" required>
+                                        <input asp-for="Name" readonly class="inputG focus-in-expand " type="text" placeholder="نام" required>
                                         <span class="highlight"></span>
                                         <span class=""></span>
-                                        <label class="labelG">Name</label>
+                                        <label class="labelG">نام</label>
                                     </div>
                                     <br />
                                     <div class="group">
-                                        <input asp-for="Price" readonly class="inputG focus-in-expand " type="text" required value="$@Model.Price">
+                                        <input asp-for="Price" readonly class="inputG focus-in-expand " type="text" required value="@Model.Price ریال">
                                         <span class="highlight"></span>
                                         <span class=""></span>
-                                        <label class="labelG">Price</label>
+                                        <label class="labelG">قیمت</label>
                                     </div>
                                     <br />
 
                                     @{
-                                        var available = Model.Available == true ? "Available" : "Not Available";
+                                        var available = Model.Available == true ? "موجود" : "ناموجود";
                                     }
 
                                     <div class="group">
                                         <input type="text" class="inputG focus-in-expand " required readonly value="@available">
                                         <span class="highlight"></span>
                                         <span class=""></span>
-                                        <label class="labelG">Available</label>
+                                        <label class="labelG">موجود یا ناموجود</label>
                                     </div>
                                     <br />
 
@@ -63,7 +63,7 @@
                                         <input asp-for="ProductTypes.Name" readonly class="inputG focus-in-expand " type="text" required>
                                         <span class="highlight"></span>
                                         <span class=""></span>
-                                        <label class="labelG">Product Type</label>
+                                        <label class="labelG">نوع کالا</label>
                                     </div>
                                     <br />
 
@@ -72,7 +72,7 @@
             <input asp-for="ProductTypes.Name" readonly class="inputG2" type="text" required>
             <span class="highlight"></span>
             <span class="bar2"></span>
-            <label class="labelG2">Special Tag</label>
+            <label class="labelG2">ویژگی کالا</label>
         </div>
         <br />*@
 
@@ -80,7 +80,7 @@
                                         <input asp-for="SpecialTags.Name" readonly class="inputG focus-in-expand " type="text" required>
                                         <span class="highlight"></span>
                                         <span class="bar2"></span>
-                                        <label class="labelG">Special Tag</label>
+                                        <label class="labelG">ویژگی کالا</label>
                                     </div>
                                     <br />
 
@@ -102,7 +102,7 @@
 
                                             <span class=""></span>
                                             <span class="bar"></span>
-                                            <label class="labelG">Count</label>
+                                            <label class="labelG">تعداد</label>
                                         </div>
                                         }
                                         else
@@ -113,7 +113,7 @@
 
                                             <span class=""></span>
                                             <span class="bar"></span>
-                                            <label class="labelG">Count</label>
+                                            <label class="labelG">تعداد</label>
                                         </div>
                                         }
                                     <br />
@@ -129,17 +129,17 @@
                                 {
                                     if (temp != null && temp.ContainsKey(Model.Id))
                                     {
-                                        <button type="submit" class="btn btn-danger" asp-action="Remove" asp-route-id="@Model.Id">Remove From Card</button>
-                                        <button type ="submit" asp-action="EditTheCount"  asp-route-id="@Model.Id" class="btn btn-info">Edit</button>
+                                        <button type="submit" class="btn btn-danger" asp-action="Remove" asp-route-id="@Model.Id">حذف از سبد خرید</button>
+                                        <button type ="submit" asp-action="EditTheCount"  asp-route-id="@Model.Id" class="btn btn-info">اعمال تغییر</button>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-primary" type="submit">Add To Card</button>
+                                        <button class="btn btn-primary" type="submit">اضافه کردن به سبد خرید</button>
                                     }
                                 }
 
                                 <button asp-action="Index" onclick="givezerotocount()" class="btn btn-success">
-                                    Back To List
+                                    بازگشت به لیست کالاها
                                 </button>
                                 @*<button>
                                         Back To List
@@ -238,6 +238,20 @@
                 </div>
             </div>
             <br />
+        
+        <div>
+            <span class="text-right d-block">
+            نظرات کاربران
+            </span>
+            <div id="comments"></div>
+
+            <div>
+                <textarea id="comment" class="w-100"></textarea>
+                <button class="ml-auto btn btn-primary" type="button" onclick="createCommnet()">
+                    ثبت نظر
+                </button>
+            </div>
+        </div>
         </div>
 
 
@@ -245,7 +259,38 @@
     </div>
 </form>
 
+
 @section Scripts{
+
+    <script lang="text/javascript">
+        function createCommnet() {
+            const comment = document.getElementById('comment')
+            console.log(comment.value, JSON.parse(localStorage.getItem('comments')||'[]'))
+             const tmp = JSON.parse(localStorage.getItem('comments')||'[]')
+             tmp.push(comment.value)
+            localStorage.setItem('comments', JSON.stringify(tmp))
+            createCommentNode(comment.value)
+            comment.value = ""
+        }
+
+        function createCommentNode(commentText) {
+            const root=document.getElementById("comments")
+            const el = document.createElement("div")  
+            el.innerText = commentText
+            el.setAttribute('class', 'text-right')
+            root.appendChild(el)
+        }
+
+        function generateComments() {
+            const comments = JSON.parse(localStorage.getItem('comments')||"[]")
+            console.log(comments)
+            comments.forEach((c) => {
+                createCommentNode(c)
+            })
+        }
+
+        generateComments()
+    </script>
     
     @if (ViewBag.error != null && ViewBag.error)
     {

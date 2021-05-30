@@ -15,8 +15,8 @@
             <div class="col-md-4 col-sm-12">
                 <div class="htmlselect">
                     <div class="bodyselect">
-                        <label id="img_category_label" class="field labelselect" for="img_category">
-                            <span class="">Search by Tag</span>
+                        <label id="img_category_label" class="field labelselect text-center" for="img_category">
+                            <span class="">جستجو با ویژگی</span>
                             <div id="img_category" class="psuedo_select" name="img_category">
                                 <span id="spanSpecialtag" class="selected spanselect"></span>
                                 <span class="selected spanselect" id="toclear"></span>
@@ -47,8 +47,8 @@
             <div class="col-md-4 col-sm-12">
                 <div class="htmlselect">
                     <div class="bodyselect">
-                        <label id="img_category_label" class="field labelselect" for="img_category" data-value="">
-                            <span class="">Search by Product Type</span>
+                        <label id="img_category_label" class="field labelselect text-center" for="img_category" data-value="">
+                            <span class="">جستجو با نوع محصول</span>
                             <div id="img_category" class="psuedo_select" name="img_category">
                                 <span onchange="fillTypeInput(this)" class="selected spanselect"></span>
                                 <span class="selected spanselect"></span>
@@ -82,7 +82,7 @@
                     <div class="">
                         <label style="font-size: 20px;color:red" class="focus-in-expand"><b>$@item.Price</b></label>
                     </div>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success text-light pull-right btn-">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success text-light pull-right btn-">جزئیات محصول</a>
                 </div>
             </div>
 
@@ -117,10 +117,10 @@
     {
         <script>
             swal({
-                title: "Good job!",
-                text: "The Sale is Done!",
+                title: "خرید با موفقیت انجام شد.",
+                text: "",
                 icon: "success",
-                button: "go for the next sale!!!",
+                button: "",
             });
         </script>
 

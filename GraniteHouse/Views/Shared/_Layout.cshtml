@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ChainStore</title>
+    <title>فروشگاه لوازم شبکه</title>
 
     <environment include="Development">
         @*<link rel="stylesheet" href="sweetalert2.min.css">*@
@@ -42,19 +42,19 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </environment>
 </head>
-<body>
+<body style="direction: rtl;">
 
     <div style="overflow:auto">
         <nav class="navbar container-fluid  navbar-expand-sm navbar-dark bg-secondary fixed-top">
-            <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">ChainStore</a>
+            <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">فروشگاه لوازم شبکه</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">صفحه اصلی</a>
                     </li>
                     @if (User.IsInRole(SD.SuperAdminEndUser))
                     {
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" asp-area="Administrator" asp-controller="ProductTypes" asp-action="Index">Product Types</a>
                         </li>
                         <li class="nav-item">
@@ -62,23 +62,23 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Administrator" asp-controller="Products" asp-action="Index">Products</a>
-                        </li>
-                        <li class="nav-item">
+                        </li> -->
+                        <!-- <li class="nav-item">
                             <a class="nav-link" asp-area="Administrator" asp-controller="AdminUsers" asp-action="Index">Admin User</a>
-                        </li>
+                        </li> -->
                     }
                     @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
                     {
-                        <li>
+                        <!-- <li>
                             <a class="nav-link" asp-area="Administrator" asp-controller="Appointments" asp-action="Index">UnSuccessfull Appointments</a>
                         </li>
                         <li>
                             <a class="nav-link" asp-area="Administrator" asp-controller="Appointments" asp-action="SuccessFullAppointments">Successfull Appointments</a>
-                        </li>
+                        </li> -->
 
-                    <li style="color: white">
+                    <!-- <li style="color: white">
                         <a class="nav-link" asp-area="Administrator" asp-controller="ORM" asp-action="Index">ORM</a>
-                    </li>
+                    </li> -->
                     }
                     <li style="color: white">
                         <a class="nav-link" asp-area="Customer" asp-controller="ShoppingCard" asp-action="Index">

@@ -25,7 +25,7 @@ namespace ChainStore.Controllers
         public HomeController(ApplicationDbContext db)
         {
             _db = db;
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
             qdb = new Qdatabase();
         }
         //[BindProperty]
@@ -82,7 +82,7 @@ namespace ChainStore.Controllers
                 int o = Convert.ToInt32(TempData["orm"]);
                 if (o == 1)
                 {
-                    ViewBag.orm = 1;
+                    ViewBag.orm = 0;
                 }
                 else
                 {

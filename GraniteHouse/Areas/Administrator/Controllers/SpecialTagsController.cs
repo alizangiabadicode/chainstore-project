@@ -24,7 +24,7 @@ namespace ChainStore.Areas.Administrator.Controllers
         public SpecialTagsController(ApplicationDbContext db)
         {
             _db = db;
-            orm = _db.WitchOrm.First().i;
+            orm = 0;
         }
         public async Task<IActionResult> Index()
         {

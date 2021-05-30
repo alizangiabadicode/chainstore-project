@@ -4,7 +4,7 @@
 @using Microsoft.AspNetCore.Http
 @model ShoppingCardViewModel
 @{
-    ViewData["Title"] = "Shopping Card";
+    ViewData["Title"] = "سبد خرید";
 }
 @inject IHttpContextAccessor HttpContextAccessor
 
@@ -21,7 +21,7 @@ else
 
 <h2 class="text-info slide-in-left">Shopping Card</h2>
 
-<div class="container border border-secondary rounded " style="padding: 15px">
+<div class="container border border-secondary rounded " style="padding: 15px; direction: ltr;">
     <div class="row">
             <div class="col-md-8 col-12" style="border-right: 1px solid black">
         <form method="post">
@@ -33,16 +33,16 @@ else
                     <tr class="table-info">
                         <th style="text-align: center" width="20%"></th>
                         <th style="text-align: center">
-                            <label asp-for="Products.FirstOrDefault().Name"></label>
+                            <label asp-for="Products.FirstOrDefault().Name">نام محصول</label>
                         </th>
                         <th style="text-align: center">
-                            <label asp-for="Products.FirstOrDefault().Price"></label>
+                            <label asp-for="Products.FirstOrDefault().Price">قیمت</label>
                         </th>
                         <th style="text-align: center">
-                            <label asp-for="Products.FirstOrDefault().Count"></label>
+                            <label asp-for="Products.FirstOrDefault().Count">تعداد</label>
                         </th>
                         <th style="text-align: center">
-                            <label asp-for="Products.FirstOrDefault().ProductTypes"></label>
+                            <label asp-for="Products.FirstOrDefault().ProductTypes">نوع محصول</label>
                         </th>
                         <th></th>
                     </tr>
@@ -80,7 +80,7 @@ else
             <div class="col-4 text-center">
         <form method="post">
                 <h6 class=" text-primary slide-in-right ">
-                    Fillout The Form
+لطفا فرم را پر کنید.
                 </h6>
             <br/>
                 <div class="bodyG slide-in-right">
@@ -89,7 +89,7 @@ else
                             <input asp-for="Appointments.CustomerName" class="inputG" type="text" required>
                             <span class=""></span>
                             <span class="bar"></span>
-                            <label class="labelG">Customer Name</label>
+                            <label class="labelG text-center d-block w-100">نام مشتری</label>
                         </div>
                         @*<label asp-for="Appointments.CustomerName"></label> :*@
                     </div>
@@ -103,7 +103,7 @@ else
                             <input asp-for="Appointments.CustomerNumber" class="inputG" type="tel" required>
                             <span class=""></span>
                             <span class="bar"></span>
-                            <label class="labelG">Customer Phone Number</label>
+                            <label class="labelG text-center d-block w-100">شماره تلفن مشتری</label>
                         </div>
                         @*<label asp-for="Appointments.CustomerNumber"></label> :*@
                     </div>
@@ -125,7 +125,7 @@ else
                                     <input asp-for="Appointments.CustomerEmail" class="inputG" type="email" required>
                                     <span class=""></span>
                                     <span class="bar"></span>
-                                    <label class="labelG">Customer Email</label>
+                                    <label class="labelG text-center d-block w-100">ایمیل مشتری</label>
                                 </div>
                                 @*<label asp-for="Appointments.CustomerEmail"></label> :*@
                             </div>
@@ -145,7 +145,7 @@ else
                                     <input asp-for="Appointments.AppointmentDate" id="datepicker" class="inputG" type="text" required>
                                     <span class=""></span>
                                     <span class="bar"></span>
-                                    <label class="labelG">Appointment Date</label>
+                                    <label class="labelG text-center d-block w-100">روز تحویل</label>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@ else
                                     <input asp-for="Appointments.AppointmentTime" class="inputG timepicker" type="text" required>
                                     <span class=""></span>
                                     <span class="bar"></span>
-                                    <label class="labelG">Appointment Time</label>
+                                    <label class="labelG text-center d-block w-100">ساعت تحویل</label>
                                 </div>
                                 @*<label asp-for="Appointments.AppointmentTime "class="timepicker"></label> :*@
                             </div>
@@ -175,7 +175,7 @@ else
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-success slide-in-right" asp-for="Appointments.AppointmentTime" id="btnPlaceHolder" type="submit">Schedule Appointment</button>
+                    <button class="btn btn-success slide-in-right" asp-for="Appointments.AppointmentTime" id="btnPlaceHolder" type="submit">تایید</button>
                 </div>
 
         </form>
